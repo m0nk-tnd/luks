@@ -11,6 +11,11 @@ class MainWindow : public QMainWindow, private Ui::MainWindow
 
 public:
   explicit MainWindow(QWidget *parent = 0);
+
+private:
+  QSqlDatabase db;
+  QString setParamsFirstTime();
+
 private slots:
   void on_action_triggered();
 };
