@@ -1,0 +1,9 @@
+#############
+## Qt
+#############
+
+Makefile
+*.Debug
+*.Release
+*.o
+moc_*
