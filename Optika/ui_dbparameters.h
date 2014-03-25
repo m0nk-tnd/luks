@@ -34,7 +34,7 @@ public:
     {
         if (dbParameters->objectName().isEmpty())
             dbParameters->setObjectName(QStringLiteral("dbParameters"));
-        dbParameters->resize(400, 300);
+        dbParameters->resize(413, 300);
         buttonBox = new QDialogButtonBox(dbParameters);
         buttonBox->setObjectName(QStringLiteral("buttonBox"));
         buttonBox->setGeometry(QRect(30, 240, 341, 32));
