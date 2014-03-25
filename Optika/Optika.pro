@@ -14,10 +14,16 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    dbparameters.cpp
+    dbparameters.cpp \
+    client_info.cpp \
+    visit_info.cpp
 
 HEADERS  += mainwindow.h \
-    dbparameters.h
+    dbparameters.h \
+    client_info.h \
+    visit_info.h
 
 FORMS    += mainwindow.ui \
-    dbparameters.ui
+    dbparameters.ui \
+    client_info.ui \
+    visit_info.ui

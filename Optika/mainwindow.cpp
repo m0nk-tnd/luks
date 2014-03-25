@@ -5,6 +5,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
   setupUi(this);
 
+  modelClient = 0;
+  modelVisit = 0;
+  modelDoctor = 0;
+  modelReason = 0;
+  modelBrend = 0;
+  modelCare_agent = 0;
+
   QString pathToDB = "";
   QFile file("./params.conf");
   if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -37,14 +44,40 @@ MainWindow::MainWindow(QWidget *parent) :
 	exit(-1);
   }
 
-  QSqlTableModel *model = new QSqlTableModel(0, db);
-  model->setTable("client");
-  model->setHeaderData(0, Qt::Horizontal, tr("Id"));
-  model->setHeaderData(1, Qt::Horizontal, tr("Name"));
-  model->select();
+  modelClient = new QSqlTableModel(0, db);
+  modelClient->setTable("client");
+  modelClient->setHeaderData(0, Qt::Horizontal, tr("id"));
+  modelClient->setHeaderData(1, Qt::Horizontal, tr("ФИО"));
+  modelClient->setHeaderData(2, Qt::Horizontal, tr("Дата рождения"));
+  modelClient->setHeaderData(3, Qt::Horizontal, tr("Телефон"));
+  modelClient->select();
 
-  this->tableView->setModel(model);
-  this->tableView->show();
+  this->client_tableView->setModel(modelClient);
+  this->client_tableView->setColumnHidden(0, true);
+  this->client_tableView->setColumnHidden(2, true);
+  this->client_tableView->setColumnHidden(3, true);
+  this->client_tableView->show();
+
+//  modelDoctor = new QSqlTableModel(0, db);
+//  modelDoctor->setTable("doctor");
+//  modelDoctor->setHeaderData(0, Qt::Horizontal, tr("id"));
+//  modelDoctor->setHeaderData(1, Qt::Horizontal, tr("Врач"));
+//  modelDoctor->select();
+
+//  this->doctor_tableView->setModel(modelDoctor);
+//  this->doctor_tableView->setColumnHidden(0, true);
+//  this->doctor_tableView->show();
+
+//  modelReason = new QSqlTableModel(0, db);
+//  modelReason->setTable("reason");
+//  modelReason->setHeaderData(0, Qt::Horizontal, tr("id"));
+//  modelReason->setHeaderData(1, Qt::Horizontal, tr("Причина"));
+//  modelReason->select();
+
+//  this->reason_tableView->setModel(modelClient);
+//  this->reason_tableView->setColumnHidden(0, true);
+//  this->reason_tableView->show();
+
 }
 
 void MainWindow::on_action_triggered()
@@ -64,4 +97,17 @@ QString MainWindow::setParamsFirstTime(){
   out << path;
   file.close();
   return path;
+}
+
+void MainWindow::on_add_client_pushButton_clicked()
+{
+    client_info *client = new client_info(this);
+    client->setModal(true);
+    client->show();
+}
+
+void MainWindow::on_add_visit_pushButton_clicked()
+{
+    visit_info *visit = new visit_info(this);
+    visit->show();
 }
