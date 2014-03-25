@@ -333,7 +333,7 @@ public:
 
         retranslateUi(visit_info);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(visit_info);

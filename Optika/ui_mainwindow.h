@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
@@ -44,6 +45,8 @@ public:
     QPushButton *delete_visit_pushButton;
     QLabel *client_label;
     QLabel *visit_label;
+    QLineEdit *search_lineEdit;
+    QLabel *search_label;
     QWidget *tab_2;
     QTableView *discount_tableView;
     QPushButton *add_discount_pushButton;
@@ -74,46 +77,52 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(736, 423);
+        MainWindow->resize(736, 452);
         action = new QAction(MainWindow);
         action->setObjectName(QStringLiteral("action"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        tabWidget->setGeometry(QRect(10, 10, 711, 351));
+        tabWidget->setGeometry(QRect(10, 10, 711, 381));
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
         client_tableView = new QTableView(tab);
         client_tableView->setObjectName(QStringLiteral("client_tableView"));
-        client_tableView->setGeometry(QRect(10, 30, 331, 231));
+        client_tableView->setGeometry(QRect(10, 80, 331, 231));
         visit_tableView = new QTableView(tab);
         visit_tableView->setObjectName(QStringLiteral("visit_tableView"));
-        visit_tableView->setGeometry(QRect(370, 30, 321, 231));
+        visit_tableView->setGeometry(QRect(370, 80, 321, 231));
         add_client_pushButton = new QPushButton(tab);
         add_client_pushButton->setObjectName(QStringLiteral("add_client_pushButton"));
-        add_client_pushButton->setGeometry(QRect(20, 270, 75, 23));
+        add_client_pushButton->setGeometry(QRect(20, 320, 75, 23));
         change_client_pushButton = new QPushButton(tab);
         change_client_pushButton->setObjectName(QStringLiteral("change_client_pushButton"));
-        change_client_pushButton->setGeometry(QRect(100, 270, 75, 23));
+        change_client_pushButton->setGeometry(QRect(100, 320, 75, 23));
         delete_client_pushButton = new QPushButton(tab);
         delete_client_pushButton->setObjectName(QStringLiteral("delete_client_pushButton"));
-        delete_client_pushButton->setGeometry(QRect(180, 270, 75, 23));
+        delete_client_pushButton->setGeometry(QRect(180, 320, 75, 23));
         add_visit_pushButton = new QPushButton(tab);
         add_visit_pushButton->setObjectName(QStringLiteral("add_visit_pushButton"));
-        add_visit_pushButton->setGeometry(QRect(380, 270, 75, 23));
+        add_visit_pushButton->setGeometry(QRect(380, 320, 75, 23));
         change_visit_pushButton = new QPushButton(tab);
         change_visit_pushButton->setObjectName(QStringLiteral("change_visit_pushButton"));
-        change_visit_pushButton->setGeometry(QRect(460, 270, 75, 23));
+        change_visit_pushButton->setGeometry(QRect(460, 320, 75, 23));
         delete_visit_pushButton = new QPushButton(tab);
         delete_visit_pushButton->setObjectName(QStringLiteral("delete_visit_pushButton"));
-        delete_visit_pushButton->setGeometry(QRect(540, 270, 75, 23));
+        delete_visit_pushButton->setGeometry(QRect(540, 320, 75, 23));
         client_label = new QLabel(tab);
         client_label->setObjectName(QStringLiteral("client_label"));
-        client_label->setGeometry(QRect(20, 4, 61, 20));
+        client_label->setGeometry(QRect(20, 54, 61, 20));
         visit_label = new QLabel(tab);
         visit_label->setObjectName(QStringLiteral("visit_label"));
-        visit_label->setGeometry(QRect(380, 5, 71, 21));
+        visit_label->setGeometry(QRect(380, 55, 71, 21));
+        search_lineEdit = new QLineEdit(tab);
+        search_lineEdit->setObjectName(QStringLiteral("search_lineEdit"));
+        search_lineEdit->setGeometry(QRect(70, 20, 271, 20));
+        search_label = new QLabel(tab);
+        search_label->setObjectName(QStringLiteral("search_label"));
+        search_label->setGeometry(QRect(20, 20, 41, 21));
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
@@ -197,8 +206,8 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
-        tabWidget_2->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(2);
+        tabWidget_2->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -216,6 +225,7 @@ public:
         delete_visit_pushButton->setText(QApplication::translate("MainWindow", "\320\243\320\264\320\260\320\273\320\270\321\202\321\214", 0));
         client_label->setText(QApplication::translate("MainWindow", "\320\232\320\273\320\270\320\265\320\275\321\202", 0));
         visit_label->setText(QApplication::translate("MainWindow", "\320\224\320\260\321\202\320\260 \320\262\320\270\320\267\320\270\321\202\320\260", 0));
+        search_label->setText(QApplication::translate("MainWindow", "\320\237\320\276\320\270\321\201\320\272", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "\320\222\320\270\320\267\320\270\321\202\321\213", 0));
         add_discount_pushButton->setText(QApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214", 0));
         change_discount_pushButton->setText(QApplication::translate("MainWindow", "\320\230\320\267\320\274\320\265\320\275\320\270\321\202\321\214", 0));
