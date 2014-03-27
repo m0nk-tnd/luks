@@ -16,51 +16,115 @@
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_client_info
 {
 public:
-    QDialogButtonBox *buttonBox;
-    QLineEdit *lineEdit;
-    QDateEdit *dateEdit;
-    QLineEdit *lineEdit_2;
+    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout_3;
     QLabel *label;
+    QSpacerItem *horizontalSpacer_3;
+    QLineEdit *name_lineEdit;
+    QHBoxLayout *horizontalLayout;
     QLabel *label_2;
+    QSpacerItem *horizontalSpacer;
+    QDateEdit *dateEdit;
+    QHBoxLayout *horizontalLayout_5;
     QLabel *label_3;
+    QSpacerItem *horizontalSpacer_5;
+    QLineEdit *phone_lineEdit;
+    QHBoxLayout *horizontalLayout_4;
+    QSpacerItem *horizontalSpacer_4;
+    QDialogButtonBox *buttonBox;
 
     void setupUi(QDialog *client_info)
     {
         if (client_info->objectName().isEmpty())
             client_info->setObjectName(QStringLiteral("client_info"));
-        client_info->resize(264, 300);
-        buttonBox = new QDialogButtonBox(client_info);
-        buttonBox->setObjectName(QStringLiteral("buttonBox"));
-        buttonBox->setGeometry(QRect(80, 250, 161, 32));
-        buttonBox->setOrientation(Qt::Horizontal);
-        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
-        lineEdit = new QLineEdit(client_info);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(20, 40, 231, 20));
-        dateEdit = new QDateEdit(client_info);
-        dateEdit->setObjectName(QStringLiteral("dateEdit"));
-        dateEdit->setGeometry(QRect(20, 90, 110, 22));
-        lineEdit_2 = new QLineEdit(client_info);
-        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(20, 140, 231, 20));
+        client_info->resize(264, 205);
+        verticalLayout = new QVBoxLayout(client_info);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         label = new QLabel(client_info);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(20, 20, 46, 13));
+
+        horizontalLayout_3->addWidget(label);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_3);
+
+
+        verticalLayout->addLayout(horizontalLayout_3);
+
+        name_lineEdit = new QLineEdit(client_info);
+        name_lineEdit->setObjectName(QStringLiteral("name_lineEdit"));
+
+        verticalLayout->addWidget(name_lineEdit);
+
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         label_2 = new QLabel(client_info);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(20, 70, 111, 16));
+
+        horizontalLayout->addWidget(label_2);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer);
+
+
+        verticalLayout->addLayout(horizontalLayout);
+
+        dateEdit = new QDateEdit(client_info);
+        dateEdit->setObjectName(QStringLiteral("dateEdit"));
+
+        verticalLayout->addWidget(dateEdit);
+
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
         label_3 = new QLabel(client_info);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(20, 120, 131, 16));
+
+        horizontalLayout_5->addWidget(label_3);
+
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer_5);
+
+
+        verticalLayout->addLayout(horizontalLayout_5);
+
+        phone_lineEdit = new QLineEdit(client_info);
+        phone_lineEdit->setObjectName(QStringLiteral("phone_lineEdit"));
+
+        verticalLayout->addWidget(phone_lineEdit);
+
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer_4);
+
+        buttonBox = new QDialogButtonBox(client_info);
+        buttonBox->setObjectName(QStringLiteral("buttonBox"));
+        buttonBox->setOrientation(Qt::Horizontal);
+        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+
+        horizontalLayout_4->addWidget(buttonBox);
+
+
+        verticalLayout->addLayout(horizontalLayout_4);
+
 
         retranslateUi(client_info);
         QObject::connect(buttonBox, SIGNAL(accepted()), client_info, SLOT(accept()));

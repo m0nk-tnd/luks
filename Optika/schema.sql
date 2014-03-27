@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS client;
 CREATE TABLE client(
-	id int not null primary key,
+	id integer primary key autoincrement,
 	name varchar(255) not null,
 	birthday timestamp,
 	phone varchar(11)
@@ -8,46 +8,46 @@ CREATE TABLE client(
 
 DROP TABLE IF EXISTS doctor;
 CREATE TABLE doctor(
-	id int not null primary key,
+	id integer primary key autoincrement,
 	name varchar(255) not null
 );
 
 DROP TABLE IF EXISTS reason;
 CREATE TABLE reason(
-	id int not null primary key,
+	id integer primary key autoincrement,
 	name varchar(255) not null
 );
 
 DROP TABLE IF EXISTS brend;
 CREATE TABLE brend(
-	id int not null primary key,
+	id integer primary key autoincrement,
 	name varchar(255) not null
 );
 
 DROP TABLE IF EXISTS care_agent;
 CREATE TABLE care_agent(
-	id int not null primary key,
+	id integer primary key autoincrement,
 	name varchar(255) not null
 );
 
 DROP TABLE IF EXISTS goods;
 CREATE TABLE goods(
-	id int not null primary key,
+	id integer primary key autoincrement,
 	name varchar(255) not null
 );
 
 DROP TABLE IF EXISTS discount;
 CREATE TABLE discount(
-	id int not null primary key,
-	num int,
-	percentage int
+	id integer primary key autoincrement,
+	num integer,
+	percentage integer
 );
 
 DROP TABLE IF EXISTS visit_date;
 CREATE TABLE visit_date(
-	id int not null primary key,
+	id integer primary key autoincrement,
 	visit_date timestamp not null default CURRENT_TIMESTAMP,
-	user_id int,
+	user_id integer,
 	
 	od_vis real(4),
 	od_sph real(4),

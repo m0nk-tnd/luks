@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
   modelDiscount = 0;
   modelGoods = 0;
 
+  visitQueryModel = new QSqlQueryModel();
+
   QString pathToDB = "";
   QFile file("./params.conf");
   if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -37,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	qDebug() << "Error open db";
 	exit(-1);
   }
+
   //странная проверка на открытие базы
   //т.к. открывается любой файл - пытаемся выполнить запрос
   QSqlQuery query;
@@ -46,87 +49,31 @@ MainWindow::MainWindow(QWidget *parent) :
 	exit(-1);
   }
 
-  modelClient = new QSqlTableModel(0, db);
-  modelClient->setTable("client");
-  modelClient->setHeaderData(0, Qt::Horizontal, tr("id"));
-  modelClient->setHeaderData(1, Qt::Horizontal, tr("ФИО"));
-  modelClient->setHeaderData(2, Qt::Horizontal, tr("Дата рождения"));
-  modelClient->setHeaderData(3, Qt::Horizontal, tr("Телефон"));
-  modelClient->select();
-
-  this->client_tableView->setModel(modelClient);
-  this->client_tableView->setColumnHidden(0, true);
-  this->client_tableView->resizeColumnsToContents();
-  this->client_tableView->show();
-
-  modelDiscount = new QSqlTableModel(0, db);
-  modelDiscount->setTable("discount");
+  OpenTable(modelDiscount, this->discount_tableView, "\"discount\"");
   modelDiscount->setHeaderData(0, Qt::Horizontal, tr("id"));
   modelDiscount->setHeaderData(1, Qt::Horizontal, tr("Номер карты"));
   modelDiscount->setHeaderData(2, Qt::Horizontal, tr("Скидка"));
-  modelDiscount->select();
-
-  this->discount_tableView->setModel(modelDiscount);
-  this->discount_tableView->setColumnHidden(0, true);
   this->discount_tableView->resizeColumnsToContents();
-  this->discount_tableView->show();
 
-  modelDoctor = new QSqlTableModel(0, db);
-  modelDoctor->setTable("doctor");
-  modelDoctor->setHeaderData(0, Qt::Horizontal, tr("id"));
+  OpenTable(modelDoctor, this->doctors_tableView, "\"doctor\"");
   modelDoctor->setHeaderData(1, Qt::Horizontal, tr("Врач"));
-  modelDoctor->select();
 
-  this->doctors_tableView->setModel(modelDoctor);
-  this->doctors_tableView->setColumnHidden(0, true);
-  this->doctors_tableView->resizeColumnsToContents();
-  this->doctors_tableView->show();
+  OpenTable(modelReason, this->reason_tableView, "\"reason\"");
+  modelReason->setHeaderData(1, Qt::Horizontal, tr("Причина обращения"));
 
-  modelReason = new QSqlTableModel(0, db);
-  modelReason->setTable("reason");
-  modelReason->setHeaderData(0, Qt::Horizontal, tr("id"));
-  modelReason->setHeaderData(1, Qt::Horizontal, tr("Причина"));
-  modelReason->select();
-
-  this->reason_tableView->setModel(modelReason);
-  this->reason_tableView->setColumnHidden(0, true);
-  this->reason_tableView->resizeColumnsToContents();
-  this->reason_tableView->show();
-
-  modelBrend = new QSqlTableModel(0, db);
-  modelBrend->setTable("brend");
-  modelBrend->setHeaderData(0, Qt::Horizontal, tr("id"));
+  OpenTable(modelBrend, this->brend_tableView, "\"brend\"");
   modelBrend->setHeaderData(1, Qt::Horizontal, tr("Бренд"));
-  modelBrend->select();
 
-  this->brend_tableView->setModel(modelBrend);
-  this->brend_tableView->setColumnHidden(0, true);
-  this->brend_tableView->resizeColumnsToContents();
-  this->brend_tableView->show();
-
-  modelCare_agent = new QSqlTableModel(0, db);
-  modelCare_agent->setTable("care_agent");
-  modelCare_agent->setHeaderData(0, Qt::Horizontal, tr("id"));
-  modelCare_agent->setHeaderData(1, Qt::Horizontal, tr("Средства ухода"));
-  modelCare_agent->select();
-
-  this->agent_care_tableView->setModel(modelCare_agent);
-  this->agent_care_tableView->setColumnHidden(0, true);
-  this->agent_care_tableView->resizeColumnsToContents();
-  this->agent_care_tableView->show();
-
-  modelGoods = new QSqlTableModel(0, db);
-  modelGoods->setTable("goods");
-  modelGoods->setHeaderData(0, Qt::Horizontal, tr("id"));
+  OpenTable(modelGoods, this->goods_tableView, "\"goods\"");
   modelGoods->setHeaderData(1, Qt::Horizontal, tr("Наименование товара"));
-  modelGoods->select();
 
-  this->goods_tableView->setModel(modelGoods);
-  this->goods_tableView->setColumnHidden(0, true);
-  this->goods_tableView->resizeColumnsToContents();
-  this->goods_tableView->show();
+  OpenTable(modelCare_agent, this->agent_care_tableView, "\"care_agent\"");
+  modelCare_agent->setHeaderData(1, Qt::Horizontal, tr("Средства ухода"));
+
+  Update();
 }
 
+//Меню файл
 void MainWindow::on_action_triggered()
 {
 	dbParameters *dial = new dbParameters(this);
@@ -146,6 +93,7 @@ QString MainWindow::setParamsFirstTime(){
   return path;
 }
 
+//Добавление нового клиента
 void MainWindow::on_add_client_pushButton_clicked()
 {
     client_info *client = new client_info(this);
@@ -153,8 +101,244 @@ void MainWindow::on_add_client_pushButton_clicked()
     client->show();
 }
 
+//Добавление визита
 void MainWindow::on_add_visit_pushButton_clicked()
+{  
+    QModelIndexList list  = this->client_tableView->selectionModel()->selectedIndexes();
+    if(!list.isEmpty())
+    {
+        QModelIndex idx = list.first();
+        QSqlRecord rec = modelClient->record(idx.row());
+        int id_client =rec.value(0).toInt();
+        visit_info *visit = new visit_info(this, id_client);
+        visit->show();
+    }
+}
+
+//Мастер-детайл Клиент <-> Дата визита
+void MainWindow::on_client_tableView_clicked(const QModelIndex &index)
 {
-    visit_info *visit = new visit_info(this);
-    visit->show();
+    QSqlRecord rec;
+    rec = modelClient->record(index.row());
+    visitQueryModel->setQuery("SELECT id, visit_date  FROM visit_date WHERE user_id = "+rec.value(0).toString()+";");
+    visitQueryModel->setHeaderData(1,Qt::Horizontal, tr("Дата визита"));
+    this->visit_tableView->setModel(visitQueryModel);
+    this->visit_tableView->resizeColumnsToContents();
+    this->visit_tableView->resizeRowsToContents();
+    this->visit_tableView->setColumnHidden(0, true);
+}
+
+bool MainWindow::OpenTable(QSqlTableModel *&model, QTableView *table, const QString &tableName)
+{
+    table->show();
+    model = new QSqlTableModel(0,db);
+    model->setTable(tableName);
+    model->select();
+    table->setModel(model);
+    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    table->setColumnHidden(0, true);
+    table->setColumnWidth(1,table->width());
+    return true;
+}
+
+//Обновление
+void MainWindow::Update()
+{
+    OpenTable(modelClient, this->client_tableView, "\"client\"");
+    modelClient->setHeaderData(1, Qt::Horizontal, tr("ФИО"));
+    modelClient->setHeaderData(2, Qt::Horizontal, tr("Дата рождения"));
+    modelClient->setHeaderData(3, Qt::Horizontal, tr("Телефон"));
+    this->client_tableView->resizeColumnsToContents();
+}
+
+//Добавление в справочнике
+void MainWindow::on_add_directory_pushButton_clicked()
+{
+   QSqlRecord rec;
+   switch(this->tabWidget_2->currentIndex()){
+      case 0: modelDoctor->insertRecord(-1,rec); break;
+      case 1: modelReason->insertRecord(-1,rec); break;
+      case 2: modelBrend->insertRecord(-1,rec); break;
+      case 3: modelGoods->insertRecord(-1,rec); break;
+      case 4: modelCare_agent->insertRecord(-1,rec); break;
+   }
+}
+
+//Подтверждение в справочнике
+void MainWindow::on_accept_directory_pushButton_clicked()
+{
+    switch(this->tabWidget_2->currentIndex()){
+       case 0: modelDoctor->submitAll(); break;
+       case 1: modelReason->submitAll(); break;
+       case 2: modelBrend->submitAll(); break;
+       case 3: modelGoods->submitAll(); break;
+       case 4: modelCare_agent->submitAll(); break;
+    }
+}
+
+//Удаление в справочнике
+void MainWindow::on_delete_directory_pushButton_clicked()
+{
+    QModelIndexList list;
+    QModelIndex idx;
+    switch(this->tabWidget_2->currentIndex()){
+       case 0: { list  = this->doctors_tableView->selectionModel()->selectedIndexes();
+                if(list.isEmpty()){
+                    QMessageBox::critical(this,tr("Ошибка удаления"),tr("Список удаления пуст!"));
+                } else {
+                    idx = list.first();
+                    int Row = idx.row();
+                    modelDoctor->removeRow(Row);
+                }
+       }
+       break;
+       case 1: { list  = this->reason_tableView->selectionModel()->selectedIndexes();
+                if(list.isEmpty()){
+                    QMessageBox::critical(this,tr("Ошибка удаления"),tr("Список удаления пуст!"));
+                } else {
+                    idx = list.first();
+                    int Row = idx.row();
+                    modelReason->removeRow(Row);
+                }
+       }
+       break;
+       case 2:  { list  = this->brend_tableView->selectionModel()->selectedIndexes();
+                 if(list.isEmpty()){
+                    QMessageBox::critical(this,tr("Ошибка удаления"),tr("Список удаления пуст!"));
+                 } else {
+                    idx = list.first();
+                    int Row = idx.row();
+                    modelBrend->removeRow(Row);
+                 }
+       }
+       break;
+       case 3:  { list  = this->goods_tableView->selectionModel()->selectedIndexes();
+                 if(list.isEmpty()){
+                    QMessageBox::critical(this,tr("Ошибка удаления"),tr("Список удаления пуст!"));
+                 } else {
+                    idx = list.first();
+                    int Row = idx.row();
+                    modelGoods->removeRow(Row);
+                 }
+       }
+       break;
+       case 4: { list  = this->agent_care_tableView->selectionModel()->selectedIndexes();
+                if(list.isEmpty()){
+                    QMessageBox::critical(this,tr("Ошибка удаления"),tr("Список удаления пуст!"));
+                } else {
+                    idx = list.first();
+                    int Row = idx.row();
+                    modelCare_agent->removeRow(Row);
+                }
+       }
+       break;
+    }
+}
+
+//Отмена в справочнике
+void MainWindow::on_cansel_directory_pushButton_clicked()
+{
+    switch(this->tabWidget_2->currentIndex()){
+       case 0: modelDoctor->revertAll(); break;
+       case 1: modelReason->revertAll(); break;
+       case 2: modelBrend->revertAll(); break;
+       case 3: modelGoods->revertAll(); break;
+       case 4: modelCare_agent->revertAll(); break;
+    }
+}
+
+//Добавление в дисконте
+void MainWindow::on_add_discount_pushButton_clicked()
+{
+    QSqlRecord rec;
+    modelDiscount->insertRecord(-1,rec);
+}
+
+//Удаление в дисконте
+void MainWindow::on_delete_discount_pushButton_clicked()
+{
+    QModelIndexList list;
+    QModelIndex idx;
+    list  = this->discount_tableView->selectionModel()->selectedIndexes();
+    if(list.isEmpty()){
+         QMessageBox::critical(this,tr("Ошибка удаления"),tr("Список удаления пуст!"));
+    } else {
+        idx = list.first();
+        int Row = idx.row();
+        modelDiscount->removeRow(Row);
+    }
+}
+
+//Подтверждение в дисконте
+void MainWindow::on_accept_discount_pushButton_clicked()
+{
+    modelDiscount->submitAll();
+}
+
+//Отмена в дисконте
+void MainWindow::on_cansel_pushButton_clicked()
+{
+    modelDiscount->revertAll();
+}
+
+//Удаление Клиента
+//Добавить каскадное удаление визитов!!
+void MainWindow::on_delete_client_pushButton_clicked()
+{
+    QModelIndexList list;
+    QModelIndex idx;
+    list  = this->client_tableView->selectionModel()->selectedIndexes();
+    if(list.isEmpty()){
+        QMessageBox::critical(this,tr("Ошибка удаления"),tr("Список удаления пуст!"));
+    } else {
+        if(QMessageBox::question(0, tr("Удаление"), tr("Удаление клиента повлечет удаление всех визитов данного клиента. Продолжить?"), QMessageBox::Yes | QMessageBox::No , QMessageBox::Yes )== QMessageBox::Yes)
+        {
+            idx = list.first();
+            int Row = idx.row();
+            modelClient->removeRow(Row);
+
+//            QModelIndex idx = list.first();
+//            QSqlRecord rec = visitQueryModel->record(idx.row());
+//            QSqlQuery q;
+//            q.prepare("DELETE FROM \"visit_date\" WHERE user_id = ?");
+//            q.addBindValue(rec.value(0).toInt());
+//            q.exec();
+        }
+    }
+}
+
+//Подтверждение в табл клиент
+void MainWindow::on_accept_client_pushButton_clicked()
+{
+    modelClient->submitAll();
+}
+
+//Удаление в табл визит
+void MainWindow::on_delete_visit_pushButton_clicked()
+{
+    QModelIndexList list  = this->visit_tableView->selectionModel()->selectedIndexes();
+    if(!list.isEmpty())
+    {
+        if(QMessageBox::question(0, tr("Удаление"), tr("Удалить эту запись?"), QMessageBox::Yes | QMessageBox::No , QMessageBox::Yes )== QMessageBox::Yes)
+        {
+            QModelIndex idx = list.first();
+            QSqlRecord rec = visitQueryModel->record(idx.row());
+            QSqlQuery q;
+            q.prepare("DELETE FROM \"visit_date\" WHERE id = ?");
+            q.addBindValue(rec.value(0).toInt());
+            q.exec();
+
+            Update();
+        }
+    }
+}
+
+//Поиск клиента - НЕ РАБОТАЕТ :(
+void MainWindow::on_search_lineEdit_textChanged(const QString &arg1)
+{
+//    if(this->search_checkBox->isChecked())
+//    {
+//        modelClient->setFilter("SELECT FROM client WHERE name LIKE '%"+this->search_lineEdit->text()+"%'");
+//        Update();
+//    }
 }

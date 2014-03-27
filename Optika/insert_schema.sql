@@ -20,3 +20,7 @@ insert into care_agent (id, name) values (1,"Раствор");
 
 insert into goods (id, name) values (1,"МКЛ");
 insert into goods (id, name) values (2,"Очки");
+
+insert into visit_date(id,visit_date,user_id) values (1,"10.10.2013",1);
+insert into visit_date(id,visit_date,user_id) values (2,"14.10.2013",1);
+insert into visit_date(id,visit_date,user_id) values (3,"25.03.2014",2);

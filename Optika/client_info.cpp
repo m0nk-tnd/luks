@@ -12,3 +12,14 @@ client_info::~client_info()
 {
     delete ui;
 }
+
+void client_info::on_buttonBox_accepted()
+{
+    QSqlQuery q;
+    q.prepare("INSERT INTO client(name, birthday, phone) values(?,?,?)");
+    q.addBindValue(ui->name_lineEdit->text());
+    q.addBindValue(ui->dateEdit->date().toString());
+    q.addBindValue(ui->phone_lineEdit->text());
+    q.exec();
+    close();
+}

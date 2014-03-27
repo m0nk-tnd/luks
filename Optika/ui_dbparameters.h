@@ -15,40 +15,87 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_dbParameters
 {
 public:
-    QDialogButtonBox *buttonBox;
+    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout;
     QLabel *label;
+    QSpacerItem *horizontalSpacer;
     QLineEdit *lineEdit;
+    QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton;
+    QSpacerItem *horizontalSpacer_2;
+    QHBoxLayout *horizontalLayout_3;
+    QSpacerItem *horizontalSpacer_3;
+    QDialogButtonBox *buttonBox;
 
     void setupUi(QDialog *dbParameters)
     {
         if (dbParameters->objectName().isEmpty())
             dbParameters->setObjectName(QStringLiteral("dbParameters"));
-        dbParameters->resize(413, 300);
-        buttonBox = new QDialogButtonBox(dbParameters);
-        buttonBox->setObjectName(QStringLiteral("buttonBox"));
-        buttonBox->setGeometry(QRect(30, 240, 341, 32));
-        buttonBox->setOrientation(Qt::Horizontal);
-        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+        dbParameters->resize(331, 128);
+        verticalLayout = new QVBoxLayout(dbParameters);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         label = new QLabel(dbParameters);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(10, 20, 221, 16));
+
+        horizontalLayout->addWidget(label);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer);
+
+
+        verticalLayout->addLayout(horizontalLayout);
+
         lineEdit = new QLineEdit(dbParameters);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(10, 50, 371, 20));
+
+        verticalLayout->addWidget(lineEdit);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         pushButton = new QPushButton(dbParameters);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(10, 80, 201, 23));
+
+        horizontalLayout_2->addWidget(pushButton);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer_2);
+
+
+        verticalLayout->addLayout(horizontalLayout_2);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_3);
+
+        buttonBox = new QDialogButtonBox(dbParameters);
+        buttonBox->setObjectName(QStringLiteral("buttonBox"));
+        buttonBox->setOrientation(Qt::Horizontal);
+        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+
+        horizontalLayout_3->addWidget(buttonBox);
+
+
+        verticalLayout->addLayout(horizontalLayout_3);
+
 
         retranslateUi(dbParameters);
         QObject::connect(buttonBox, SIGNAL(accepted()), dbParameters, SLOT(accept()));
@@ -59,7 +106,7 @@ public:
 
     void retranslateUi(QDialog *dbParameters)
     {
-        dbParameters->setWindowTitle(QApplication::translate("dbParameters", "Dialog", 0));
+        dbParameters->setWindowTitle(QApplication::translate("dbParameters", "\320\241\320\276\320\265\320\264\320\270\320\275\320\265\320\275\320\270\320\265 \321\201 \320\261\320\260\320\267\320\276\320\271 \320\264\320\260\320\275\320\275\321\213\321\205", 0));
         label->setText(QApplication::translate("dbParameters", "\320\237\321\203\321\202\321\214 \320\272 \321\204\320\260\320\271\320\273\321\203 \320\221\320\260\320\267\321\213 \320\264\320\260\320\275\320\275\321\213\321\205", 0));
         pushButton->setText(QApplication::translate("dbParameters", "\320\243\320\272\320\260\320\267\320\260\321\202\321\214 \321\204\320\260\320\271\320\273", 0));
     } // retranslateUi

@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -38,7 +39,7 @@ public:
     QTableView *client_tableView;
     QTableView *visit_tableView;
     QPushButton *add_client_pushButton;
-    QPushButton *change_client_pushButton;
+    QPushButton *accept_client_pushButton;
     QPushButton *delete_client_pushButton;
     QPushButton *add_visit_pushButton;
     QPushButton *change_visit_pushButton;
@@ -47,12 +48,14 @@ public:
     QLabel *visit_label;
     QLineEdit *search_lineEdit;
     QLabel *search_label;
+    QCheckBox *search_checkBox;
     QWidget *tab_2;
     QTableView *discount_tableView;
     QPushButton *add_discount_pushButton;
-    QPushButton *change_discount_pushButton;
+    QPushButton *accept_discount_pushButton;
     QPushButton *delete_discount_pushButton;
     QLabel *discount_label;
+    QPushButton *cansel_pushButton;
     QWidget *tab_3;
     QTabWidget *tabWidget_2;
     QWidget *tab_4;
@@ -66,12 +69,13 @@ public:
     QWidget *tab_6;
     QTableView *agent_care_tableView;
     QPushButton *add_directory_pushButton;
-    QPushButton *change_directory_pushButton;
+    QPushButton *accept_directory_pushButton;
     QPushButton *delete_directory_pushButton;
+    QPushButton *cansel_directory_pushButton;
     QMenuBar *menuBar;
     QMenu *menu;
-    QToolBar *mainToolBar;
     QStatusBar *statusBar;
+    QToolBar *mainToolBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -95,13 +99,13 @@ public:
         visit_tableView->setGeometry(QRect(370, 80, 321, 231));
         add_client_pushButton = new QPushButton(tab);
         add_client_pushButton->setObjectName(QStringLiteral("add_client_pushButton"));
-        add_client_pushButton->setGeometry(QRect(20, 320, 75, 23));
-        change_client_pushButton = new QPushButton(tab);
-        change_client_pushButton->setObjectName(QStringLiteral("change_client_pushButton"));
-        change_client_pushButton->setGeometry(QRect(100, 320, 75, 23));
+        add_client_pushButton->setGeometry(QRect(10, 320, 75, 23));
+        accept_client_pushButton = new QPushButton(tab);
+        accept_client_pushButton->setObjectName(QStringLiteral("accept_client_pushButton"));
+        accept_client_pushButton->setGeometry(QRect(250, 320, 91, 23));
         delete_client_pushButton = new QPushButton(tab);
         delete_client_pushButton->setObjectName(QStringLiteral("delete_client_pushButton"));
-        delete_client_pushButton->setGeometry(QRect(180, 320, 75, 23));
+        delete_client_pushButton->setGeometry(QRect(90, 320, 75, 23));
         add_visit_pushButton = new QPushButton(tab);
         add_visit_pushButton->setObjectName(QStringLiteral("add_visit_pushButton"));
         add_visit_pushButton->setGeometry(QRect(380, 320, 75, 23));
@@ -119,10 +123,13 @@ public:
         visit_label->setGeometry(QRect(380, 55, 71, 21));
         search_lineEdit = new QLineEdit(tab);
         search_lineEdit->setObjectName(QStringLiteral("search_lineEdit"));
-        search_lineEdit->setGeometry(QRect(70, 20, 271, 20));
+        search_lineEdit->setGeometry(QRect(110, 20, 231, 20));
         search_label = new QLabel(tab);
         search_label->setObjectName(QStringLiteral("search_label"));
         search_label->setGeometry(QRect(20, 20, 41, 21));
+        search_checkBox = new QCheckBox(tab);
+        search_checkBox->setObjectName(QStringLiteral("search_checkBox"));
+        search_checkBox->setGeometry(QRect(60, 20, 41, 21));
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
@@ -131,16 +138,19 @@ public:
         discount_tableView->setGeometry(QRect(10, 30, 651, 231));
         add_discount_pushButton = new QPushButton(tab_2);
         add_discount_pushButton->setObjectName(QStringLiteral("add_discount_pushButton"));
-        add_discount_pushButton->setGeometry(QRect(410, 280, 75, 23));
-        change_discount_pushButton = new QPushButton(tab_2);
-        change_discount_pushButton->setObjectName(QStringLiteral("change_discount_pushButton"));
-        change_discount_pushButton->setGeometry(QRect(490, 280, 75, 23));
+        add_discount_pushButton->setGeometry(QRect(330, 280, 75, 23));
+        accept_discount_pushButton = new QPushButton(tab_2);
+        accept_discount_pushButton->setObjectName(QStringLiteral("accept_discount_pushButton"));
+        accept_discount_pushButton->setGeometry(QRect(490, 280, 91, 23));
         delete_discount_pushButton = new QPushButton(tab_2);
         delete_discount_pushButton->setObjectName(QStringLiteral("delete_discount_pushButton"));
-        delete_discount_pushButton->setGeometry(QRect(570, 280, 75, 23));
+        delete_discount_pushButton->setGeometry(QRect(410, 280, 75, 23));
         discount_label = new QLabel(tab_2);
         discount_label->setObjectName(QStringLiteral("discount_label"));
         discount_label->setGeometry(QRect(20, 3, 71, 20));
+        cansel_pushButton = new QPushButton(tab_2);
+        cansel_pushButton->setObjectName(QStringLiteral("cansel_pushButton"));
+        cansel_pushButton->setGeometry(QRect(590, 280, 75, 23));
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QStringLiteral("tab_3"));
@@ -179,13 +189,16 @@ public:
         tabWidget_2->addTab(tab_6, QString());
         add_directory_pushButton = new QPushButton(tab_3);
         add_directory_pushButton->setObjectName(QStringLiteral("add_directory_pushButton"));
-        add_directory_pushButton->setGeometry(QRect(410, 280, 75, 23));
-        change_directory_pushButton = new QPushButton(tab_3);
-        change_directory_pushButton->setObjectName(QStringLiteral("change_directory_pushButton"));
-        change_directory_pushButton->setGeometry(QRect(490, 280, 75, 23));
+        add_directory_pushButton->setGeometry(QRect(330, 280, 75, 23));
+        accept_directory_pushButton = new QPushButton(tab_3);
+        accept_directory_pushButton->setObjectName(QStringLiteral("accept_directory_pushButton"));
+        accept_directory_pushButton->setGeometry(QRect(490, 280, 81, 23));
         delete_directory_pushButton = new QPushButton(tab_3);
         delete_directory_pushButton->setObjectName(QStringLiteral("delete_directory_pushButton"));
-        delete_directory_pushButton->setGeometry(QRect(570, 280, 75, 23));
+        delete_directory_pushButton->setGeometry(QRect(410, 280, 75, 23));
+        cansel_directory_pushButton = new QPushButton(tab_3);
+        cansel_directory_pushButton->setObjectName(QStringLiteral("cansel_directory_pushButton"));
+        cansel_directory_pushButton->setGeometry(QRect(580, 280, 75, 23));
         tabWidget->addTab(tab_3, QString());
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -194,20 +207,20 @@ public:
         menu = new QMenu(menuBar);
         menu->setObjectName(QStringLiteral("menu"));
         MainWindow->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(MainWindow);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
+        mainToolBar = new QToolBar(MainWindow);
+        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
+        MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
 
         menuBar->addAction(menu->menuAction());
         menu->addAction(action);
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(2);
-        tabWidget_2->setCurrentIndex(3);
+        tabWidget->setCurrentIndex(0);
+        tabWidget_2->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -218,7 +231,7 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "\320\236\320\277\321\202\320\270\320\272\320\260 \"\320\233\321\216\320\272\321\201\"", 0));
         action->setText(QApplication::translate("MainWindow", "\320\235\320\260\321\201\321\202\321\200\320\276\320\271\320\272\320\270 \321\201\320\276\320\265\320\264\320\270\320\275\320\265\320\275\320\270\321\217", 0));
         add_client_pushButton->setText(QApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214", 0));
-        change_client_pushButton->setText(QApplication::translate("MainWindow", "\320\230\320\267\320\274\320\265\320\275\320\270\321\202\321\214", 0));
+        accept_client_pushButton->setText(QApplication::translate("MainWindow", "\320\237\320\276\320\264\321\202\320\262\320\265\321\200\320\264\320\270\321\202\321\214", 0));
         delete_client_pushButton->setText(QApplication::translate("MainWindow", "\320\243\320\264\320\260\320\273\320\270\321\202\321\214", 0));
         add_visit_pushButton->setText(QApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214", 0));
         change_visit_pushButton->setText(QApplication::translate("MainWindow", "\320\230\320\267\320\274\320\265\320\275\320\270\321\202\321\214", 0));
@@ -226,11 +239,13 @@ public:
         client_label->setText(QApplication::translate("MainWindow", "\320\232\320\273\320\270\320\265\320\275\321\202", 0));
         visit_label->setText(QApplication::translate("MainWindow", "\320\224\320\260\321\202\320\260 \320\262\320\270\320\267\320\270\321\202\320\260", 0));
         search_label->setText(QApplication::translate("MainWindow", "\320\237\320\276\320\270\321\201\320\272", 0));
+        search_checkBox->setText(QApplication::translate("MainWindow", "\320\222\320\272\320\273.", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "\320\222\320\270\320\267\320\270\321\202\321\213", 0));
         add_discount_pushButton->setText(QApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214", 0));
-        change_discount_pushButton->setText(QApplication::translate("MainWindow", "\320\230\320\267\320\274\320\265\320\275\320\270\321\202\321\214", 0));
+        accept_discount_pushButton->setText(QApplication::translate("MainWindow", "\320\237\320\276\320\264\321\202\320\262\320\265\321\200\320\264\320\270\321\202\321\214", 0));
         delete_discount_pushButton->setText(QApplication::translate("MainWindow", "\320\243\320\264\320\260\320\273\320\270\321\202\321\214", 0));
         discount_label->setText(QApplication::translate("MainWindow", "\320\235\320\276\320\274\320\265\321\200 \320\272\320\260\321\200\321\202\321\213", 0));
+        cansel_pushButton->setText(QApplication::translate("MainWindow", "\320\236\321\202\320\274\320\265\320\275\320\270\321\202\321\214", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "\320\224\320\270\321\201\320\272\320\276\320\275\321\202", 0));
         tabWidget_2->setTabText(tabWidget_2->indexOf(tab_4), QApplication::translate("MainWindow", "\320\222\321\200\320\260\321\207", 0));
         tabWidget_2->setTabText(tabWidget_2->indexOf(tab_8), QApplication::translate("MainWindow", "\320\237\321\200\320\270\321\207\320\270\320\275\320\260 \320\276\320\261\321\200\320\260\321\211\320\265\320\275\320\270\321\217", 0));
@@ -238,8 +253,9 @@ public:
         tabWidget_2->setTabText(tabWidget_2->indexOf(tab_5), QApplication::translate("MainWindow", "\320\235\320\260\320\270\320\274\320\265\320\275\320\276\320\262\320\260\320\275\320\270\320\265 \321\202\320\276\320\262\320\260\321\200\320\260", 0));
         tabWidget_2->setTabText(tabWidget_2->indexOf(tab_6), QApplication::translate("MainWindow", "\320\241\321\200\320\265\320\264\321\201\321\202\320\262\320\276 \321\203\321\205\320\276\320\264\320\260", 0));
         add_directory_pushButton->setText(QApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214", 0));
-        change_directory_pushButton->setText(QApplication::translate("MainWindow", "\320\230\320\267\320\274\320\265\320\275\320\270\321\202\321\214", 0));
+        accept_directory_pushButton->setText(QApplication::translate("MainWindow", "\320\237\320\276\320\264\321\202\320\262\320\265\321\200\320\264\320\270\321\202\321\214", 0));
         delete_directory_pushButton->setText(QApplication::translate("MainWindow", "\320\243\320\264\320\260\320\273\320\270\321\202\321\214", 0));
+        cansel_directory_pushButton->setText(QApplication::translate("MainWindow", "\320\236\321\202\320\274\320\265\320\275\320\270\321\202\321\214", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "\320\241\320\277\321\200\320\260\320\262\320\276\321\207\320\275\320\270\320\272", 0));
         menu->setTitle(QApplication::translate("MainWindow", "\320\244\320\260\320\271\320\273", 0));
     } // retranslateUi
