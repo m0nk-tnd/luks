@@ -21,6 +21,10 @@ private slots:
 
 private:
     Ui::client_info *ui;
+
+signals:
+    void ownAccepted();
+
 };
 
 #endif // CLIENT_INFO_H

@@ -99,6 +99,7 @@ void MainWindow::on_add_client_pushButton_clicked()
     client_info *client = new client_info(this);
     client->setModal(true);
     client->show();
+    connect(client, &client_info::ownAccepted, this, &MainWindow::Update);
 }
 
 //Добавление визита
@@ -110,7 +111,8 @@ void MainWindow::on_add_visit_pushButton_clicked()
         QModelIndex idx = list.first();
         QSqlRecord rec = modelClient->record(idx.row());
         int id_client =rec.value(0).toInt();
-        visit_info *visit = new visit_info(this, id_client);
+        visit_info *visit = new visit_info(this, id_client, -1, &db);
+        connect(visit, &visit_info::accepted, this, &MainWindow::updateVisitsTable);
         visit->show();
     }
 }
@@ -120,17 +122,17 @@ void MainWindow::on_client_tableView_clicked(const QModelIndex &index)
 {
     QSqlRecord rec;
     rec = modelClient->record(index.row());
-    visitQueryModel->setQuery("SELECT id, visit_date  FROM visit_date WHERE user_id = "+rec.value(0).toString()+";");
+    visitQueryModel->setQuery("SELECT id, visit_date, client_id  FROM visit_date WHERE client_id = "+rec.value(0).toString()+";");
     visitQueryModel->setHeaderData(1,Qt::Horizontal, tr("Дата визита"));
     this->visit_tableView->setModel(visitQueryModel);
     this->visit_tableView->resizeColumnsToContents();
     this->visit_tableView->resizeRowsToContents();
     this->visit_tableView->setColumnHidden(0, true);
+    this->visit_tableView->setColumnHidden(2, true);
 }
 
 bool MainWindow::OpenTable(QSqlTableModel *&model, QTableView *table, const QString &tableName)
 {
-    table->show();
     model = new QSqlTableModel(0,db);
     model->setTable(tableName);
     model->select();
@@ -138,6 +140,7 @@ bool MainWindow::OpenTable(QSqlTableModel *&model, QTableView *table, const QStr
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     table->setColumnHidden(0, true);
     table->setColumnWidth(1,table->width());
+    table->show();
     return true;
 }
 
@@ -282,7 +285,7 @@ void MainWindow::on_cansel_pushButton_clicked()
 }
 
 //Удаление Клиента
-//Добавить каскадное удаление визитов!!
+//Добавить очистку визитов, после удаление клиента!!
 void MainWindow::on_delete_client_pushButton_clicked()
 {
     QModelIndexList list;
@@ -295,14 +298,16 @@ void MainWindow::on_delete_client_pushButton_clicked()
         {
             idx = list.first();
             int Row = idx.row();
-            modelClient->removeRow(Row);
-
-//            QModelIndex idx = list.first();
-//            QSqlRecord rec = visitQueryModel->record(idx.row());
-//            QSqlQuery q;
-//            q.prepare("DELETE FROM \"visit_date\" WHERE user_id = ?");
-//            q.addBindValue(rec.value(0).toInt());
-//            q.exec();
+            QSqlRecord rec = modelClient->record(Row);
+            QSqlQuery q_visit;
+            q_visit.prepare("DELETE FROM \"visit_date\" WHERE client_id = ?");
+            q_visit.addBindValue(rec.value(0).toInt());
+            q_visit.exec();
+            QSqlQuery q_client;
+            q_client.prepare("DELETE FROM \"client\" WHERE id = ?");
+            q_client.addBindValue(rec.value(0).toInt());
+            q_client.exec();
+            Update();
         }
     }
 }
@@ -327,8 +332,7 @@ void MainWindow::on_delete_visit_pushButton_clicked()
             q.prepare("DELETE FROM \"visit_date\" WHERE id = ?");
             q.addBindValue(rec.value(0).toInt());
             q.exec();
-
-            Update();
+            updateVisitsTable();
         }
     }
 }
@@ -341,4 +345,36 @@ void MainWindow::on_search_lineEdit_textChanged(const QString &arg1)
 //        modelClient->setFilter("SELECT FROM client WHERE name LIKE '%"+this->search_lineEdit->text()+"%'");
 //        Update();
 //    }
+}
+
+void MainWindow::updateVisitsTable(){
+    QModelIndexList list  = this->client_tableView->selectionModel()->selectedIndexes();
+    if(!list.isEmpty())
+    {
+        QModelIndex idx = list.first();
+        QSqlRecord rec = modelClient->record(idx.row());
+        visitQueryModel->setQuery("SELECT id, visit_date  FROM visit_date WHERE client_id = "+rec.value(0).toString()+";");
+        visitQueryModel->setHeaderData(1,Qt::Horizontal, tr("Дата визита"));
+        this->visit_tableView->setModel(visitQueryModel);
+        this->visit_tableView->resizeColumnsToContents();
+        this->visit_tableView->resizeRowsToContents();
+        this->visit_tableView->setColumnHidden(0, true);
+    }
+}
+
+//Изменение информации по визиту по кнопке
+void MainWindow::on_change_visit_pushButton_clicked()
+{
+
+}
+
+//Изменение информации по визиту по двойному щелчку
+void MainWindow::on_visit_tableView_doubleClicked(const QModelIndex &index)
+{
+    QSqlRecord rec = visitQueryModel->record(index.row());
+    int id = rec.value(0).toInt();
+    int id_client = rec.value(2).toInt();
+    visit_info *visit = new visit_info(this, id_client, id, &db);
+    connect(visit, &visit_info::accepted, this, &MainWindow::updateVisitsTable);
+    visit->show();
 }

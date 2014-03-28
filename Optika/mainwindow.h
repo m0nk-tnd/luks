@@ -28,6 +28,7 @@ private:
   QSqlTableModel *modelGoods;
   QSqlQueryModel *visitQueryModel;
 
+  void updateVisitsTable();
   bool OpenTable(QSqlTableModel*& model, QTableView* table, const QString& tableName);
   void Update();
 
@@ -48,6 +49,8 @@ private slots:
   void on_accept_client_pushButton_clicked();
   void on_delete_visit_pushButton_clicked();
   void on_search_lineEdit_textChanged(const QString &arg1);
+  void on_change_visit_pushButton_clicked();
+  void on_visit_tableView_doubleClicked(const QModelIndex &index);
 };
 
 #endif // MAINWINDOW_H
