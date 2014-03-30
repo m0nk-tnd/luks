@@ -13,13 +13,14 @@ class client_info : public QDialog
     Q_OBJECT
 
 public:
-    explicit client_info(QWidget *parent = 0);
+    explicit client_info(QWidget *parent = 0, int id_client = 0);
     ~client_info();
 
 private slots:
     void on_buttonBox_accepted();
 
 private:
+    int id_client;
     Ui::client_info *ui;
 
 signals:

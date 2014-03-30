@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icon/icon_loupe.gif</file>
+        <file>icon/icon-check.png</file>
+        <file>icon/icon-delete.gif</file>
+        <file>icon/icon-plus.gif</file>
+        <file>icon/icon-write.png</file>
+        <file>icon/icon-cansel.ico</file>
+        <file>icon/icon-glasses.png</file>
+        <file>icon/icon-face-glasses.png</file>
+        <file>icon/doctor.png</file>
+        <file>icon/stetiscoop.png</file>
+        <file>icon/brend.png</file>
+        <file>icon/care.png</file>
+        <file>icon/ochki.png</file>
+        <file>icon/persent.png</file>
+        <file>icon/icon-configure.png</file>
+        <file>icon/icon-excel.png</file>
+        <file>icon/icon-calendar.png</file>
+    </qresource>
+</RCC>

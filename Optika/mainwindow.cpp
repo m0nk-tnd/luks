@@ -56,19 +56,19 @@ MainWindow::MainWindow(QWidget *parent) :
   this->discount_tableView->resizeColumnsToContents();
 
   OpenTable(modelDoctor, this->doctors_tableView, "\"doctor\"");
-  modelDoctor->setHeaderData(1, Qt::Horizontal, tr("Врач"));
+  modelDoctor->setHeaderData(1, Qt::Horizontal, tr("Список врачей"));
 
   OpenTable(modelReason, this->reason_tableView, "\"reason\"");
-  modelReason->setHeaderData(1, Qt::Horizontal, tr("Причина обращения"));
+  modelReason->setHeaderData(1, Qt::Horizontal, tr("Список причин обращения"));
 
   OpenTable(modelBrend, this->brend_tableView, "\"brend\"");
-  modelBrend->setHeaderData(1, Qt::Horizontal, tr("Бренд"));
+  modelBrend->setHeaderData(1, Qt::Horizontal, tr("Список брендов"));
 
   OpenTable(modelGoods, this->goods_tableView, "\"goods\"");
-  modelGoods->setHeaderData(1, Qt::Horizontal, tr("Наименование товара"));
+  modelGoods->setHeaderData(1, Qt::Horizontal, tr("Список наименований товаров"));
 
   OpenTable(modelCare_agent, this->agent_care_tableView, "\"care_agent\"");
-  modelCare_agent->setHeaderData(1, Qt::Horizontal, tr("Средства ухода"));
+  modelCare_agent->setHeaderData(1, Qt::Horizontal, tr("Список средств ухода"));
 
   Update();
 }
@@ -96,7 +96,7 @@ QString MainWindow::setParamsFirstTime(){
 //Добавление нового клиента
 void MainWindow::on_add_client_pushButton_clicked()
 {
-    client_info *client = new client_info(this);
+    client_info *client = new client_info(this, -1);
     client->setModal(true);
     client->show();
     connect(client, &client_info::ownAccepted, this, &MainWindow::Update);
@@ -294,7 +294,7 @@ void MainWindow::on_delete_client_pushButton_clicked()
     if(list.isEmpty()){
         QMessageBox::critical(this,tr("Ошибка удаления"),tr("Список удаления пуст!"));
     } else {
-        if(QMessageBox::question(0, tr("Удаление"), tr("Удаление клиента повлечет удаление всех визитов данного клиента. Продолжить?"), QMessageBox::Yes | QMessageBox::No , QMessageBox::Yes )== QMessageBox::Yes)
+        if(QMessageBox::question(0, tr("Внимание!"), tr("Вы уверены, что хотите удалить данную эту запись?"), QMessageBox::Yes | QMessageBox::No , QMessageBox::Yes )== QMessageBox::Yes)
         {
             idx = list.first();
             int Row = idx.row();
@@ -312,19 +312,13 @@ void MainWindow::on_delete_client_pushButton_clicked()
     }
 }
 
-//Подтверждение в табл клиент
-void MainWindow::on_accept_client_pushButton_clicked()
-{
-    modelClient->submitAll();
-}
-
 //Удаление в табл визит
 void MainWindow::on_delete_visit_pushButton_clicked()
 {
     QModelIndexList list  = this->visit_tableView->selectionModel()->selectedIndexes();
     if(!list.isEmpty())
     {
-        if(QMessageBox::question(0, tr("Удаление"), tr("Удалить эту запись?"), QMessageBox::Yes | QMessageBox::No , QMessageBox::Yes )== QMessageBox::Yes)
+        if(QMessageBox::question(0, tr("Внимание!"), tr("Вы уверены, что хотите удалить данную эту запись?"), QMessageBox::Yes | QMessageBox::No , QMessageBox::Yes )== QMessageBox::Yes)
         {
             QModelIndex idx = list.first();
             QSqlRecord rec = visitQueryModel->record(idx.row());
@@ -340,11 +334,8 @@ void MainWindow::on_delete_visit_pushButton_clicked()
 //Поиск клиента - НЕ РАБОТАЕТ :(
 void MainWindow::on_search_lineEdit_textChanged(const QString &arg1)
 {
-//    if(this->search_checkBox->isChecked())
-//    {
-//        modelClient->setFilter("SELECT FROM client WHERE name LIKE '%"+this->search_lineEdit->text()+"%'");
-//        Update();
-//    }
+    modelClient->setFilter("SELECT FROM client WHERE name LIKE '%"+this->search_lineEdit->text()+"%'");
+    Update();
 }
 
 void MainWindow::updateVisitsTable(){
@@ -365,7 +356,24 @@ void MainWindow::updateVisitsTable(){
 //Изменение информации по визиту по кнопке
 void MainWindow::on_change_visit_pushButton_clicked()
 {
+    QModelIndexList list  = this->visit_tableView->selectionModel()->selectedIndexes();
+    if(!list.isEmpty())
+    {
+        QModelIndex idx = list.first();
+        QSqlRecord rec = visitQueryModel->record(idx.row());
+        int id = rec.value(0).toInt();
 
+        QSqlQuery q;
+        q.prepare("SELECT client_id FROM visit_date WHERE id = ?");
+        q.addBindValue(id);
+        q.exec();
+        q.first();
+        int id_client = q.value(0).toInt();
+
+        visit_info *visit = new visit_info(this, id_client, id, &db);
+        connect(visit, &visit_info::accepted, this, &MainWindow::updateVisitsTable);
+        visit->show();
+    }
 }
 
 //Изменение информации по визиту по двойному щелчку
@@ -373,8 +381,53 @@ void MainWindow::on_visit_tableView_doubleClicked(const QModelIndex &index)
 {
     QSqlRecord rec = visitQueryModel->record(index.row());
     int id = rec.value(0).toInt();
-    int id_client = rec.value(2).toInt();
+
+    QSqlQuery q;
+    q.prepare("SELECT client_id FROM visit_date WHERE id = ?");
+    q.addBindValue(id);
+    q.exec();
+    q.first();
+    int id_client = q.value(0).toInt();
+
     visit_info *visit = new visit_info(this, id_client, id, &db);
     connect(visit, &visit_info::accepted, this, &MainWindow::updateVisitsTable);
     visit->show();
+}
+
+//Загрузить данные из Excel
+void MainWindow::on_pushButton_clicked()
+{
+
+}
+
+void MainWindow::on_change_client_pushButton_clicked()
+{
+    QModelIndexList list  = this->client_tableView->selectionModel()->selectedIndexes();
+    if(!list.isEmpty())
+    {
+        QModelIndex idx = list.first();
+        QSqlRecord rec = modelClient->record(idx.row());
+        int id_client = rec.value(0).toInt();
+
+        client_info *client = new client_info(this, id_client);
+        client->setModal(true);
+        client->show();
+        connect(client, &client_info::ownAccepted, this, &MainWindow::Update);
+    }
+}
+
+void MainWindow::on_client_tableView_doubleClicked(const QModelIndex &index)
+{
+    QModelIndexList list  = this->client_tableView->selectionModel()->selectedIndexes();
+    if(!list.isEmpty())
+    {
+        QModelIndex idx = list.first();
+        QSqlRecord rec = modelClient->record(idx.row());
+        int id_client = rec.value(0).toInt();
+
+        client_info *client = new client_info(this, id_client);
+        client->setModal(true);
+        client->show();
+        connect(client, &client_info::ownAccepted, this, &MainWindow::Update);
+    }
 }

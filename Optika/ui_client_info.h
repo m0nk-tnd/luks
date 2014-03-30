@@ -41,6 +41,7 @@ public:
     QLabel *label_3;
     QSpacerItem *horizontalSpacer_5;
     QLineEdit *phone_lineEdit;
+    QSpacerItem *verticalSpacer;
     QHBoxLayout *horizontalLayout_4;
     QSpacerItem *horizontalSpacer_4;
     QDialogButtonBox *buttonBox;
@@ -49,13 +50,20 @@ public:
     {
         if (client_info->objectName().isEmpty())
             client_info->setObjectName(QStringLiteral("client_info"));
-        client_info->resize(264, 205);
+        client_info->resize(283, 234);
+        QFont font;
+        font.setPointSize(9);
+        client_info->setFont(font);
         verticalLayout = new QVBoxLayout(client_info);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         label = new QLabel(client_info);
         label->setObjectName(QStringLiteral("label"));
+        QFont font1;
+        font1.setBold(true);
+        font1.setWeight(75);
+        label->setFont(font1);
 
         horizontalLayout_3->addWidget(label);
 
@@ -75,6 +83,7 @@ public:
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         label_2 = new QLabel(client_info);
         label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setFont(font1);
 
         horizontalLayout->addWidget(label_2);
 
@@ -94,6 +103,7 @@ public:
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
         label_3 = new QLabel(client_info);
         label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setFont(font1);
 
         horizontalLayout_5->addWidget(label_3);
 
@@ -109,6 +119,10 @@ public:
 
         verticalLayout->addWidget(phone_lineEdit);
 
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer);
+
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
         horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
@@ -117,8 +131,10 @@ public:
 
         buttonBox = new QDialogButtonBox(client_info);
         buttonBox->setObjectName(QStringLiteral("buttonBox"));
+        buttonBox->setMaximumSize(QSize(16777214, 16777215));
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+        buttonBox->setCenterButtons(false);
 
         horizontalLayout_4->addWidget(buttonBox);
 

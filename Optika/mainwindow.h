@@ -46,11 +46,13 @@ private slots:
   void on_accept_discount_pushButton_clicked();
   void on_cansel_pushButton_clicked();
   void on_delete_client_pushButton_clicked();
-  void on_accept_client_pushButton_clicked();
   void on_delete_visit_pushButton_clicked();
   void on_search_lineEdit_textChanged(const QString &arg1);
   void on_change_visit_pushButton_clicked();
   void on_visit_tableView_doubleClicked(const QModelIndex &index);
+  void on_pushButton_clicked();
+  void on_change_client_pushButton_clicked();
+  void on_client_tableView_doubleClicked(const QModelIndex &index);
 };
 
 #endif // MAINWINDOW_H

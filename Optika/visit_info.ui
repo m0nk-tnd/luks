@@ -6,941 +6,815 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>577</width>
-    <height>540</height>
+    <width>698</width>
+    <height>647</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>9</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Осмотр</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resource.qrc">
+    <normaloff>:/icon/icon-face-glasses.png</normaloff>:/icon/icon-face-glasses.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="Line" name="line_2">
-    <property name="geometry">
-     <rect>
-      <x>9</x>
-      <y>82</y>
-      <width>548</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="Line" name="line">
-    <property name="geometry">
-     <rect>
-      <x>9</x>
-      <y>147</y>
-      <width>548</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="Line" name="line_3">
-    <property name="geometry">
-     <rect>
-      <x>9</x>
-      <y>342</y>
-      <width>548</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QTabWidget" name="tabWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>360</y>
-      <width>548</width>
-      <height>101</height>
-     </rect>
-    </property>
-    <property name="currentIndex">
-     <number>1</number>
-    </property>
-    <widget class="QWidget" name="tab">
-     <attribute name="title">
-      <string>МЛК</string>
-     </attribute>
-     <widget class="QLineEdit" name="os_sph_mkl_lineEdit">
-      <property name="geometry">
-       <rect>
-        <x>57</x>
-        <y>32</y>
-        <width>66</width>
-        <height>16</height>
-       </rect>
+   <layout class="QVBoxLayout" name="verticalLayout_6">
+    <item>
+     <widget class="QFrame" name="frame">
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
       </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QSplitter" name="splitter">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <widget class="QWidget" name="">
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QLabel" name="label_35">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="pixmap">
+              <pixmap resource="resource.qrc">:/icon/icon-calendar.png</pixmap>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_21">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Дата визита</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDateEdit" name="visit_dateEdit">
+             <property name="minimumDateTime">
+              <datetime>
+               <hour>0</hour>
+               <minute>0</minute>
+               <second>0</second>
+               <year>2010</year>
+               <month>1</month>
+               <day>1</day>
+              </datetime>
+             </property>
+             <property name="maximumDate">
+              <date>
+               <year>2030</year>
+               <month>12</month>
+               <day>31</day>
+              </date>
+             </property>
+             <property name="minimumDate">
+              <date>
+               <year>2010</year>
+               <month>1</month>
+               <day>1</day>
+              </date>
+             </property>
+             <property name="calendarPopup">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="">
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QLabel" name="label_22">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Причина обращения</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="reason_comboBox"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QLabel" name="label_23">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Врач</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="doctor_comboBox"/>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <widget class="QLabel" name="label_33">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Бренд</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="brend_comboBox"/>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <item>
+            <widget class="QLabel" name="label_34">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Товар</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="goods_comboBox"/>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <item>
+            <widget class="QLabel" name="label_24">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Средство ухода</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="care_agent_comboBox"/>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+      <zorder>visit_dateEdit</zorder>
+      <zorder>label_21</zorder>
+      <zorder>label_35</zorder>
+      <zorder>reason_comboBox</zorder>
+      <zorder>visit_dateEdit</zorder>
+      <zorder>label_21</zorder>
+      <zorder>label_35</zorder>
+      <zorder>label_22</zorder>
+      <zorder>goods_comboBox</zorder>
+      <zorder>care_agent_comboBox</zorder>
+      <zorder>brend_comboBox</zorder>
+      <zorder>label_24</zorder>
+      <zorder>doctor_comboBox</zorder>
+      <zorder>label_34</zorder>
+      <zorder>label_23</zorder>
+      <zorder>label_33</zorder>
+      <zorder>label_23</zorder>
+      <zorder>doctor_comboBox</zorder>
+      <zorder>brend_comboBox</zorder>
+      <zorder>label_33</zorder>
+      <zorder>goods_comboBox</zorder>
+      <zorder>label_34</zorder>
+      <zorder>care_agent_comboBox</zorder>
+      <zorder>label_24</zorder>
+      <zorder>line</zorder>
      </widget>
-     <widget class="QLineEdit" name="os_cyl_mkl_lineEdit">
-      <property name="geometry">
-       <rect>
-        <x>154</x>
-        <y>32</y>
-        <width>67</width>
-        <height>16</height>
-       </rect>
+    </item>
+    <item>
+     <widget class="QFrame" name="frame_2">
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
       </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_27">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Осмотр</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::AutoText</enum>
+           </property>
+           <property name="scaledContents">
+            <bool>false</bool>
+           </property>
+           <property name="margin">
+            <number>1</number>
+           </property>
+           <property name="indent">
+            <number>-1</number>
+           </property>
+           <property name="openExternalLinks">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_9">
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>VisOD:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="od_vis_lineEdit"/>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>sph:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="od_sph_lineEdit"/>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string>cyl:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="od_cyl_lineEdit"/>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>axis:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="od_axis_lineEdit"/>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_11">
+             <property name="text">
+              <string>Комментарий</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTextEdit" name="od_comments_textEdit"/>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_10">
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>VisOS:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="os_vis_lineEdit"/>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>sph:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="os_sph_lineEdit"/>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>cyl:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="os_cyl_lineEdit"/>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>asix:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="os_axis_lineEdit"/>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_10">
+             <property name="text">
+              <string>Комментарий</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTextEdit" name="os_comments_textEdit"/>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
-     <widget class="QLabel" name="label_14">
-      <property name="geometry">
-       <rect>
-        <x>129</x>
-        <y>32</y>
-        <width>19</width>
-        <height>16</height>
-       </rect>
+    </item>
+    <item>
+     <widget class="QFrame" name="frame_3">
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
       </property>
-      <property name="text">
-       <string>Cyl:</string>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
       </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_28">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QLabel" name="label_43">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Кератометрия</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::AutoText</enum>
+           </property>
+           <property name="scaledContents">
+            <bool>false</bool>
+           </property>
+           <property name="margin">
+            <number>1</number>
+           </property>
+           <property name="indent">
+            <number>-1</number>
+           </property>
+           <property name="openExternalLinks">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_15">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
+             <item>
+              <widget class="QLabel" name="label_36">
+               <property name="text">
+                <string>ОD R1</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="od_r1_lineEdit"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_37">
+               <property name="text">
+                <string>R2</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="od_r2_lineEdit"/>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_13">
+             <item>
+              <widget class="QLabel" name="label_40">
+               <property name="text">
+                <string>BC</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="bc_lineEdit"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_41">
+               <property name="text">
+                <string>Dia</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="dia_lineEdit"/>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_16">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_12">
+             <item>
+              <widget class="QLabel" name="label_39">
+               <property name="text">
+                <string>OS R1</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="os_r1_lineEdit"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_38">
+               <property name="text">
+                <string>R2</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="os_r2_lineEdit"/>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_14">
+             <item>
+              <widget class="QLabel" name="label_42">
+               <property name="text">
+                <string>Dpp</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="dpp_lineEdit"/>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
-     <widget class="QLabel" name="label_18">
-      <property name="geometry">
-       <rect>
-        <x>12</x>
-        <y>32</y>
-        <width>39</width>
-        <height>16</height>
-       </rect>
+    </item>
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>1</number>
       </property>
-      <property name="text">
-       <string>OS Sph:</string>
-      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>МЛК</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_21">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_20">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_17">
+              <item>
+               <widget class="QLabel" name="label_13">
+                <property name="text">
+                 <string>OD Sph:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="od_sph_mkl_lineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_15">
+                <property name="text">
+                 <string>Cyl:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="od_cyl_mkl_lineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_19">
+                <property name="text">
+                 <string>axis:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="od_axis_mkl_lineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_17">
+                <property name="text">
+                 <string>BC:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="bc_mlk_lineEdit"/>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_18">
+              <item>
+               <widget class="QLabel" name="label_18">
+                <property name="text">
+                 <string>OS Sph:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="os_sph_mkl_lineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_14">
+                <property name="text">
+                 <string>Cyl:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="os_cyl_mkl_lineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_16">
+                <property name="text">
+                 <string>axis:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="os_axis_mkl_lineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_12">
+                <property name="text">
+                 <string>Dpp:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="dpp_mkl_lineEdit"/>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_19">
+            <item>
+             <widget class="QLabel" name="label_20">
+              <property name="text">
+               <string>БМС</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTextEdit" name="bms_mlk_textEdit"/>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Очки</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_26">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_25">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_22">
+              <item>
+               <widget class="QLabel" name="label_30">
+                <property name="text">
+                 <string>OD Sph:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="od_sph_ochki_lineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_29">
+                <property name="text">
+                 <string>Cyl:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="od_cyl_ochki_lineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_31">
+                <property name="text">
+                 <string>axis:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="od_axis_ochki_lineEdit"/>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_23">
+              <item>
+               <widget class="QLabel" name="label_25">
+                <property name="text">
+                 <string>OS Sph:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="os_sph_ochki_lineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_28">
+                <property name="text">
+                 <string>Cyl:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="os_cyl_ochki_lineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_26">
+                <property name="text">
+                 <string>axis:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="os_axis_ochki_lineEdit"/>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_24">
+            <item>
+             <widget class="QLabel" name="label_27">
+              <property name="text">
+               <string>Dpp:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="dpp_ochki_lineEdit"/>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_32">
+              <property name="text">
+               <string>Примечания</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTextEdit" name="comments_ochki_textEdit"/>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
      </widget>
-     <widget class="QLabel" name="label_16">
-      <property name="geometry">
-       <rect>
-        <x>227</x>
-        <y>32</y>
-        <width>23</width>
-        <height>16</height>
-       </rect>
+    </item>
+    <item>
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
       </property>
-      <property name="text">
-       <string>axis:</string>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
       </property>
-     </widget>
-     <widget class="QLabel" name="label_12">
-      <property name="geometry">
-       <rect>
-        <x>328</x>
-        <y>32</y>
-        <width>23</width>
-        <height>16</height>
-       </rect>
+     </spacer>
+    </item>
+    <item>
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
       </property>
-      <property name="text">
-       <string>Dpp:</string>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
       </property>
-     </widget>
-     <widget class="QLineEdit" name="dpp_mkl_lineEdit">
-      <property name="geometry">
-       <rect>
-        <x>357</x>
-        <y>32</y>
-        <width>67</width>
-        <height>16</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="os_axis_mkl_lineEdit">
-      <property name="geometry">
-       <rect>
-        <x>256</x>
-        <y>32</y>
-        <width>66</width>
-        <height>16</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="od_cyl_mkl_lineEdit">
-      <property name="geometry">
-       <rect>
-        <x>157</x>
-        <y>12</y>
-        <width>67</width>
-        <height>16</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_19">
-      <property name="geometry">
-       <rect>
-        <x>230</x>
-        <y>12</y>
-        <width>23</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>axis:</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="od_sph_mkl_lineEdit">
-      <property name="geometry">
-       <rect>
-        <x>58</x>
-        <y>12</y>
-        <width>68</width>
-        <height>16</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_15">
-      <property name="geometry">
-       <rect>
-        <x>132</x>
-        <y>12</y>
-        <width>19</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Cyl:</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_17">
-      <property name="geometry">
-       <rect>
-        <x>333</x>
-        <y>12</y>
-        <width>17</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>BC:</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="od_axis_mkl_lineEdit">
-      <property name="geometry">
-       <rect>
-        <x>259</x>
-        <y>12</y>
-        <width>68</width>
-        <height>16</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="bc_mlk_lineEdit">
-      <property name="geometry">
-       <rect>
-        <x>356</x>
-        <y>12</y>
-        <width>68</width>
-        <height>16</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_13">
-      <property name="geometry">
-       <rect>
-        <x>12</x>
-        <y>12</y>
-        <width>40</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>OD Sph:</string>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="bms_mlk_textEdit">
-      <property name="geometry">
-       <rect>
-        <x>460</x>
-        <y>11</y>
-        <width>71</width>
-        <height>34</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_20">
-      <property name="geometry">
-       <rect>
-        <x>433</x>
-        <y>11</y>
-        <width>21</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>БМС</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_2">
-     <attribute name="title">
-      <string>Очки</string>
-     </attribute>
-     <widget class="QLabel" name="label_32">
-      <property name="geometry">
-       <rect>
-        <x>370</x>
-        <y>10</y>
-        <width>61</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Примечания</string>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="comments_ochki_textEdit">
-      <property name="geometry">
-       <rect>
-        <x>437</x>
-        <y>10</y>
-        <width>95</width>
-        <height>36</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="od_sph_ochki_lineEdit">
-      <property name="geometry">
-       <rect>
-        <x>57</x>
-        <y>11</y>
-        <width>79</width>
-        <height>16</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_29">
-      <property name="geometry">
-       <rect>
-        <x>142</x>
-        <y>11</y>
-        <width>19</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Cyl:</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="od_cyl_ochki_lineEdit">
-      <property name="geometry">
-       <rect>
-        <x>167</x>
-        <y>11</y>
-        <width>80</width>
-        <height>16</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_30">
-      <property name="geometry">
-       <rect>
-        <x>11</x>
-        <y>11</y>
-        <width>40</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>OD Sph:</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_31">
-      <property name="geometry">
-       <rect>
-        <x>253</x>
-        <y>11</y>
-        <width>23</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>axis:</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="od_axis_ochki_lineEdit">
-      <property name="geometry">
-       <rect>
-        <x>282</x>
-        <y>11</y>
-        <width>79</width>
-        <height>16</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_25">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>40</y>
-        <width>39</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>OS Sph:</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="os_sph_ochki_lineEdit">
-      <property name="geometry">
-       <rect>
-        <x>60</x>
-        <y>40</y>
-        <width>80</width>
-        <height>16</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_28">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>40</y>
-        <width>19</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Cyl:</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="os_cyl_ochki_lineEdit">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>40</y>
-        <width>79</width>
-        <height>16</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_26">
-      <property name="geometry">
-       <rect>
-        <x>250</x>
-        <y>40</y>
-        <width>23</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>axis:</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="os_axis_ochki_lineEdit">
-      <property name="geometry">
-       <rect>
-        <x>280</x>
-        <y>40</y>
-        <width>80</width>
-        <height>16</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_27">
-      <property name="geometry">
-       <rect>
-        <x>400</x>
-        <y>50</y>
-        <width>23</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Dpp:</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="Dpp_ochki_lineEdit">
-      <property name="geometry">
-       <rect>
-        <x>440</x>
-        <y>50</y>
-        <width>91</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-   </widget>
-   <widget class="QComboBox" name="reason_comboBox">
-    <property name="geometry">
-     <rect>
-      <x>9</x>
-      <y>56</y>
-      <width>191</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_22">
-    <property name="geometry">
-     <rect>
-      <x>9</x>
-      <y>37</y>
-      <width>103</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Причина обращения</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="goods_comboBox">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>130</y>
-      <width>141</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="doctor_comboBox">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>100</y>
-      <width>141</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_33">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>100</y>
-      <width>31</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Бренд</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="brend_comboBox">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>100</y>
-      <width>131</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_23">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>100</y>
-      <width>24</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Врач</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_24">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>130</y>
-      <width>83</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Средство ухода</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="care_agent_comboBox">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>130</y>
-      <width>131</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_34">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>130</y>
-      <width>30</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Товар</string>
-    </property>
-   </widget>
-   <widget class="QDateEdit" name="visit_dateEdit">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>10</y>
-      <width>81</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="minimumDateTime">
-     <datetime>
-      <hour>0</hour>
-      <minute>0</minute>
-      <second>0</second>
-      <year>2010</year>
-      <month>1</month>
-      <day>1</day>
-     </datetime>
-    </property>
-    <property name="maximumDate">
-     <date>
-      <year>2030</year>
-      <month>12</month>
-      <day>31</day>
-     </date>
-    </property>
-    <property name="minimumDate">
-     <date>
-      <year>2010</year>
-      <month>1</month>
-      <day>1</day>
-     </date>
-    </property>
-    <property name="calendarPopup">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_21">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>64</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Дата визита</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_9">
-    <property name="geometry">
-     <rect>
-      <x>266</x>
-      <y>185</y>
-      <width>23</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>axis:</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="od_sph_lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>131</x>
-      <y>210</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_11">
-    <property name="geometry">
-     <rect>
-      <x>351</x>
-      <y>185</y>
-      <width>67</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Комментарий</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>185</y>
-      <width>32</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>VisOD:</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="od_vis_lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>48</x>
-      <y>210</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="od_comments_textEdit">
-    <property name="geometry">
-     <rect>
-      <x>424</x>
-      <y>185</y>
-      <width>132</width>
-      <height>71</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="od_axis_lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>295</x>
-      <y>210</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>104</x>
-      <y>185</y>
-      <width>21</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>sph:</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="od_cyl_lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>210</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_7">
-    <property name="geometry">
-     <rect>
-      <x>187</x>
-      <y>185</y>
-      <width>17</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>cyl:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>264</y>
-      <width>31</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>VisOS:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_10">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>264</y>
-      <width>67</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Комментарий</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>103</x>
-      <y>264</y>
-      <width>21</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>sph:</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="os_cyl_lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>209</x>
-      <y>289</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="os_vis_lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>47</x>
-      <y>289</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="os_axis_lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>294</x>
-      <y>289</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="os_comments_textEdit">
-    <property name="geometry">
-     <rect>
-      <x>423</x>
-      <y>264</y>
-      <width>133</width>
-      <height>71</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_8">
-    <property name="geometry">
-     <rect>
-      <x>265</x>
-      <y>264</y>
-      <width>23</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>asix:</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="os_sph_lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>289</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>186</x>
-      <y>264</y>
-      <width>17</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>cyl:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>56</x>
-      <y>157</y>
-      <width>45</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Осмотр</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
-    </property>
-    <property name="scaledContents">
-     <bool>false</bool>
-    </property>
-    <property name="margin">
-     <number>1</number>
-    </property>
-    <property name="indent">
-     <number>-1</number>
-    </property>
-    <property name="openExternalLinks">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="cancel_pushButton">
-    <property name="geometry">
-     <rect>
-      <x>460</x>
-      <y>460</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Отменить</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="add_pushButton">
-    <property name="geometry">
-     <rect>
-      <x>360</x>
-      <y>460</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Ок</string>
-    </property>
-   </widget>
-   <widget class="Line" name="line_4">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>30</y>
-      <width>548</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <zorder>label_23</zorder>
-   <zorder>label_24</zorder>
-   <zorder>care_agent_comboBox</zorder>
-   <zorder>label_34</zorder>
-   <zorder>visit_dateEdit</zorder>
-   <zorder>label_21</zorder>
+     </spacer>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_29">
+      <item>
+       <widget class="QPushButton" name="add_pushButton">
+        <property name="text">
+         <string>Ок</string>
+        </property>
+        <property name="icon">
+         <iconset resource="resource.qrc">
+          <normaloff>:/icon/icon-check.png</normaloff>:/icon/icon-check.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="cancel_pushButton">
+        <property name="text">
+         <string>Отменить</string>
+        </property>
+        <property name="icon">
+         <iconset resource="resource.qrc">
+          <normaloff>:/icon/icon-cansel.ico</normaloff>:/icon/icon-cansel.ico</iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
    <zorder>label_9</zorder>
    <zorder>od_sph_lineEdit</zorder>
    <zorder>label_11</zorder>
@@ -965,29 +839,41 @@
    <zorder>cancel_pushButton</zorder>
    <zorder>add_pushButton</zorder>
    <zorder>tabWidget</zorder>
-   <zorder>line</zorder>
-   <zorder>line_2</zorder>
-   <zorder>line_3</zorder>
-   <zorder>reason_comboBox</zorder>
-   <zorder>label_22</zorder>
-   <zorder>doctor_comboBox</zorder>
-   <zorder>label_33</zorder>
-   <zorder>brend_comboBox</zorder>
-   <zorder>goods_comboBox</zorder>
-   <zorder>line_4</zorder>
+   <zorder>od_r1_lineEdit</zorder>
+   <zorder>od_r2_lineEdit</zorder>
+   <zorder>os_r1_lineEdit</zorder>
+   <zorder>os_r2_lineEdit</zorder>
+   <zorder>bc_lineEdit</zorder>
+   <zorder>dia_lineEdit</zorder>
+   <zorder>dpp_lineEdit</zorder>
+   <zorder>label_36</zorder>
+   <zorder>label_37</zorder>
+   <zorder>label_38</zorder>
+   <zorder>label_39</zorder>
+   <zorder>label_40</zorder>
+   <zorder>label_41</zorder>
+   <zorder>label_42</zorder>
+   <zorder>label_43</zorder>
+   <zorder>frame</zorder>
+   <zorder>frame_2</zorder>
+   <zorder>frame_3</zorder>
+   <zorder>verticalSpacer</zorder>
+   <zorder>verticalSpacer_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>577</width>
+     <width>698</width>
      <height>21</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

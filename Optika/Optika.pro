@@ -11,7 +11,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = Optika
 TEMPLATE = app
 
-
 SOURCES += main.cpp\
         mainwindow.cpp \
     dbparameters.cpp \
@@ -27,3 +26,8 @@ FORMS    += mainwindow.ui \
     dbparameters.ui \
     client_info.ui \
     visit_info.ui
+
+RESOURCES += \
+    resource.qrc
+
+

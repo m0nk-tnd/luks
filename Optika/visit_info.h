@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QtSql>
+#include <QDebug>
 
 namespace Ui {
 class visit_info;
@@ -18,6 +19,8 @@ public:
 
 private slots:
     void on_add_pushButton_clicked();
+
+    void on_cancel_pushButton_clicked();
 
 private:
     int id_client;

@@ -1,11 +1,17 @@
 #include "mainwindow.h"
 #include <QApplication>
+#include <QTextCodec>
 
 int main(int argc, char *argv[])
 {
-  QApplication a(argc, argv);
-  MainWindow w;
-  w.show();
+    QApplication a(argc, argv);
 
-  return a.exec();
+    //Русские кнопки
+    QTranslator qtTranslator;
+    qtTranslator.load("qt_ru",QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    a.installTranslator(&qtTranslator);
+
+    MainWindow w;
+    w.show();
+    return a.exec();
 }
