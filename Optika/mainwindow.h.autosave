@@ -8,9 +8,6 @@
 #include <visit_info.h>
 #include <QMessageBox>
 
-#include <ActiveQt/qaxobject.h>
-#include <ActiveQt/qaxbase.h>
-
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {

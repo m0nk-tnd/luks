@@ -38,7 +38,7 @@
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
             <widget class="QLabel" name="label_35">
@@ -96,7 +96,7 @@
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
             <widget class="QLabel" name="label_22">
@@ -214,31 +214,6 @@
         </layout>
        </item>
       </layout>
-      <zorder>visit_dateEdit</zorder>
-      <zorder>label_21</zorder>
-      <zorder>label_35</zorder>
-      <zorder>reason_comboBox</zorder>
-      <zorder>visit_dateEdit</zorder>
-      <zorder>label_21</zorder>
-      <zorder>label_35</zorder>
-      <zorder>label_22</zorder>
-      <zorder>goods_comboBox</zorder>
-      <zorder>care_agent_comboBox</zorder>
-      <zorder>brend_comboBox</zorder>
-      <zorder>label_24</zorder>
-      <zorder>doctor_comboBox</zorder>
-      <zorder>label_34</zorder>
-      <zorder>label_23</zorder>
-      <zorder>label_33</zorder>
-      <zorder>label_23</zorder>
-      <zorder>doctor_comboBox</zorder>
-      <zorder>brend_comboBox</zorder>
-      <zorder>label_33</zorder>
-      <zorder>goods_comboBox</zorder>
-      <zorder>label_34</zorder>
-      <zorder>care_agent_comboBox</zorder>
-      <zorder>label_24</zorder>
-      <zorder>line</zorder>
      </widget>
     </item>
     <item>
@@ -290,7 +265,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="od_vis_lineEdit"/>
+            <widget class="QLineEdit" name="od_vis_lineEdit">
+             <property name="inputMask">
+              <string>#0.00;_</string>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QLabel" name="label_4">
@@ -300,7 +279,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="od_sph_lineEdit"/>
+            <widget class="QLineEdit" name="od_sph_lineEdit">
+             <property name="inputMask">
+              <string>#0.00;_</string>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QLabel" name="label_7">
@@ -310,7 +293,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="od_cyl_lineEdit"/>
+            <widget class="QLineEdit" name="od_cyl_lineEdit">
+             <property name="inputMask">
+              <string>#0.00;_</string>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QLabel" name="label_9">
@@ -320,7 +307,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="od_axis_lineEdit"/>
+            <widget class="QLineEdit" name="od_axis_lineEdit">
+             <property name="inputMask">
+              <string>00;_</string>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QLabel" name="label_11">
@@ -344,7 +335,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="os_vis_lineEdit"/>
+            <widget class="QLineEdit" name="os_vis_lineEdit">
+             <property name="inputMask">
+              <string>#0.00;_</string>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QLabel" name="label_5">
@@ -354,7 +349,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="os_sph_lineEdit"/>
+            <widget class="QLineEdit" name="os_sph_lineEdit">
+             <property name="inputMask">
+              <string>#0.00;_</string>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QLabel" name="label_6">
@@ -364,7 +363,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="os_cyl_lineEdit"/>
+            <widget class="QLineEdit" name="os_cyl_lineEdit">
+             <property name="inputMask">
+              <string>#0.00;_</string>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QLabel" name="label_8">
@@ -374,7 +377,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="os_axis_lineEdit"/>
+            <widget class="QLineEdit" name="os_axis_lineEdit">
+             <property name="inputMask">
+              <string>00;_</string>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QLabel" name="label_10">
@@ -444,7 +451,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="od_r1_lineEdit"/>
+              <widget class="QLineEdit" name="od_r1_lineEdit">
+               <property name="inputMask">
+                <string>#0.00;_</string>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QLabel" name="label_37">
@@ -454,7 +465,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="od_r2_lineEdit"/>
+              <widget class="QLineEdit" name="od_r2_lineEdit">
+               <property name="inputMask">
+                <string>#0.00;_</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -468,7 +483,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="bc_lineEdit"/>
+              <widget class="QLineEdit" name="bc_lineEdit">
+               <property name="inputMask">
+                <string>#0.00;_</string>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QLabel" name="label_41">
@@ -478,7 +497,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="dia_lineEdit"/>
+              <widget class="QLineEdit" name="dia_lineEdit">
+               <property name="inputMask">
+                <string>#0.00;_</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -496,7 +519,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="os_r1_lineEdit"/>
+              <widget class="QLineEdit" name="os_r1_lineEdit">
+               <property name="inputMask">
+                <string>#0.00;_</string>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QLabel" name="label_38">
@@ -506,7 +533,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="os_r2_lineEdit"/>
+              <widget class="QLineEdit" name="os_r2_lineEdit">
+               <property name="inputMask">
+                <string>#0.00;_</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -520,7 +551,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="dpp_lineEdit"/>
+              <widget class="QLineEdit" name="dpp_lineEdit">
+               <property name="inputMask">
+                <string/>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -555,7 +590,11 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="od_sph_mkl_lineEdit"/>
+               <widget class="QLineEdit" name="od_sph_mkl_lineEdit">
+                <property name="inputMask">
+                 <string>#0.00;_</string>
+                </property>
+               </widget>
               </item>
               <item>
                <widget class="QLabel" name="label_15">
@@ -565,7 +604,11 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="od_cyl_mkl_lineEdit"/>
+               <widget class="QLineEdit" name="od_cyl_mkl_lineEdit">
+                <property name="inputMask">
+                 <string>#0.00;_</string>
+                </property>
+               </widget>
               </item>
               <item>
                <widget class="QLabel" name="label_19">
@@ -575,7 +618,11 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="od_axis_mkl_lineEdit"/>
+               <widget class="QLineEdit" name="od_axis_mkl_lineEdit">
+                <property name="inputMask">
+                 <string>#0.00;_</string>
+                </property>
+               </widget>
               </item>
               <item>
                <widget class="QLabel" name="label_17">
@@ -585,7 +632,11 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="bc_mlk_lineEdit"/>
+               <widget class="QLineEdit" name="bc_mlk_lineEdit">
+                <property name="inputMask">
+                 <string>#0.00;_</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>
@@ -599,7 +650,11 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="os_sph_mkl_lineEdit"/>
+               <widget class="QLineEdit" name="os_sph_mkl_lineEdit">
+                <property name="inputMask">
+                 <string>#0.00;_</string>
+                </property>
+               </widget>
               </item>
               <item>
                <widget class="QLabel" name="label_14">
@@ -609,7 +664,11 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="os_cyl_mkl_lineEdit"/>
+               <widget class="QLineEdit" name="os_cyl_mkl_lineEdit">
+                <property name="inputMask">
+                 <string>#0.00;_</string>
+                </property>
+               </widget>
               </item>
               <item>
                <widget class="QLabel" name="label_16">
@@ -619,7 +678,11 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="os_axis_mkl_lineEdit"/>
+               <widget class="QLineEdit" name="os_axis_mkl_lineEdit">
+                <property name="inputMask">
+                 <string>#0.00;_</string>
+                </property>
+               </widget>
               </item>
               <item>
                <widget class="QLabel" name="label_12">
@@ -629,7 +692,11 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="dpp_mkl_lineEdit"/>
+               <widget class="QLineEdit" name="dpp_mkl_lineEdit">
+                <property name="inputMask">
+                 <string>#0.00;_</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>
@@ -672,7 +739,11 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="od_sph_ochki_lineEdit"/>
+               <widget class="QLineEdit" name="od_sph_ochki_lineEdit">
+                <property name="inputMask">
+                 <string>#0.00;_</string>
+                </property>
+               </widget>
               </item>
               <item>
                <widget class="QLabel" name="label_29">
@@ -682,7 +753,11 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="od_cyl_ochki_lineEdit"/>
+               <widget class="QLineEdit" name="od_cyl_ochki_lineEdit">
+                <property name="inputMask">
+                 <string>#0.00;_</string>
+                </property>
+               </widget>
               </item>
               <item>
                <widget class="QLabel" name="label_31">
@@ -692,7 +767,11 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="od_axis_ochki_lineEdit"/>
+               <widget class="QLineEdit" name="od_axis_ochki_lineEdit">
+                <property name="inputMask">
+                 <string>#0.00;_</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>
@@ -706,7 +785,11 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="os_sph_ochki_lineEdit"/>
+               <widget class="QLineEdit" name="os_sph_ochki_lineEdit">
+                <property name="inputMask">
+                 <string>#0.00;_</string>
+                </property>
+               </widget>
               </item>
               <item>
                <widget class="QLabel" name="label_28">
@@ -716,7 +799,11 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="os_cyl_ochki_lineEdit"/>
+               <widget class="QLineEdit" name="os_cyl_ochki_lineEdit">
+                <property name="inputMask">
+                 <string>#0.00;_</string>
+                </property>
+               </widget>
               </item>
               <item>
                <widget class="QLabel" name="label_26">
@@ -726,7 +813,11 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="os_axis_ochki_lineEdit"/>
+               <widget class="QLineEdit" name="os_axis_ochki_lineEdit">
+                <property name="inputMask">
+                 <string>#0.00;_</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>
@@ -815,45 +906,7 @@
      </layout>
     </item>
    </layout>
-   <zorder>label_9</zorder>
-   <zorder>od_sph_lineEdit</zorder>
-   <zorder>label_11</zorder>
-   <zorder>label_2</zorder>
-   <zorder>od_vis_lineEdit</zorder>
-   <zorder>od_comments_textEdit</zorder>
-   <zorder>od_axis_lineEdit</zorder>
-   <zorder>label_4</zorder>
-   <zorder>od_cyl_lineEdit</zorder>
-   <zorder>label_7</zorder>
-   <zorder>label_3</zorder>
-   <zorder>label_10</zorder>
-   <zorder>label_5</zorder>
-   <zorder>os_cyl_lineEdit</zorder>
-   <zorder>os_vis_lineEdit</zorder>
-   <zorder>os_axis_lineEdit</zorder>
-   <zorder>os_comments_textEdit</zorder>
-   <zorder>label_8</zorder>
-   <zorder>os_sph_lineEdit</zorder>
-   <zorder>label_6</zorder>
-   <zorder>label</zorder>
-   <zorder>cancel_pushButton</zorder>
-   <zorder>add_pushButton</zorder>
    <zorder>tabWidget</zorder>
-   <zorder>od_r1_lineEdit</zorder>
-   <zorder>od_r2_lineEdit</zorder>
-   <zorder>os_r1_lineEdit</zorder>
-   <zorder>os_r2_lineEdit</zorder>
-   <zorder>bc_lineEdit</zorder>
-   <zorder>dia_lineEdit</zorder>
-   <zorder>dpp_lineEdit</zorder>
-   <zorder>label_36</zorder>
-   <zorder>label_37</zorder>
-   <zorder>label_38</zorder>
-   <zorder>label_39</zorder>
-   <zorder>label_40</zorder>
-   <zorder>label_41</zorder>
-   <zorder>label_42</zorder>
-   <zorder>label_43</zorder>
    <zorder>frame</zorder>
    <zorder>frame_2</zorder>
    <zorder>frame_3</zorder>

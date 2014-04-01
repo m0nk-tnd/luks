@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+      #include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent)
@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
   modelCare_agent = 0;
   modelDiscount = 0;
   modelGoods = 0;
+  clientFilter = "";
 
   visitQueryModel = new QSqlQueryModel();
 
@@ -53,7 +54,6 @@ MainWindow::MainWindow(QWidget *parent) :
   modelDiscount->setHeaderData(0, Qt::Horizontal, tr("id"));
   modelDiscount->setHeaderData(1, Qt::Horizontal, tr("Номер карты"));
   modelDiscount->setHeaderData(2, Qt::Horizontal, tr("Скидка"));
-  this->discount_tableView->resizeColumnsToContents();
 
   OpenTable(modelDoctor, this->doctors_tableView, "\"doctor\"");
   modelDoctor->setHeaderData(1, Qt::Horizontal, tr("Список врачей"));
@@ -71,6 +71,7 @@ MainWindow::MainWindow(QWidget *parent) :
   modelCare_agent->setHeaderData(1, Qt::Horizontal, tr("Список средств ухода"));
 
   Update();
+  this->resizeTables();
 }
 
 //Меню файл
@@ -125,22 +126,24 @@ void MainWindow::on_client_tableView_clicked(const QModelIndex &index)
     visitQueryModel->setQuery("SELECT id, visit_date, client_id  FROM visit_date WHERE client_id = "+rec.value(0).toString()+";");
     visitQueryModel->setHeaderData(1,Qt::Horizontal, tr("Дата визита"));
     this->visit_tableView->setModel(visitQueryModel);
-    this->visit_tableView->resizeColumnsToContents();
-    this->visit_tableView->resizeRowsToContents();
     this->visit_tableView->setColumnHidden(0, true);
     this->visit_tableView->setColumnHidden(2, true);
+    this->resizeTables();
 }
 
 bool MainWindow::OpenTable(QSqlTableModel *&model, QTableView *table, const QString &tableName)
 {
     model = new QSqlTableModel(0,db);
     model->setTable(tableName);
+    if(tableName == "\"client\""){
+        model->setFilter(clientFilter);
+    }
     model->select();
     table->setModel(model);
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     table->setColumnHidden(0, true);
-    table->setColumnWidth(1,table->width());
     table->show();
+    this->resizeTables();
     return true;
 }
 
@@ -151,7 +154,7 @@ void MainWindow::Update()
     modelClient->setHeaderData(1, Qt::Horizontal, tr("ФИО"));
     modelClient->setHeaderData(2, Qt::Horizontal, tr("Дата рождения"));
     modelClient->setHeaderData(3, Qt::Horizontal, tr("Телефон"));
-    this->client_tableView->resizeColumnsToContents();
+    this->resizeTables();
 }
 
 //Добавление в справочнике
@@ -331,10 +334,10 @@ void MainWindow::on_delete_visit_pushButton_clicked()
     }
 }
 
-//Поиск клиента - НЕ РАБОТАЕТ :(
+//Поиск клиента - чувствительность к регистру :(
 void MainWindow::on_search_lineEdit_textChanged(const QString &arg1)
 {
-    modelClient->setFilter("SELECT FROM client WHERE name LIKE '%"+this->search_lineEdit->text()+"%'");
+    clientFilter = "UPPER(name) LIKE '%"+this->search_lineEdit->text()+"%'";
     Update();
 }
 
@@ -347,8 +350,6 @@ void MainWindow::updateVisitsTable(){
         visitQueryModel->setQuery("SELECT id, visit_date  FROM visit_date WHERE client_id = "+rec.value(0).toString()+";");
         visitQueryModel->setHeaderData(1,Qt::Horizontal, tr("Дата визита"));
         this->visit_tableView->setModel(visitQueryModel);
-        this->visit_tableView->resizeColumnsToContents();
-        this->visit_tableView->resizeRowsToContents();
         this->visit_tableView->setColumnHidden(0, true);
     }
 }
@@ -394,12 +395,53 @@ void MainWindow::on_visit_tableView_doubleClicked(const QModelIndex &index)
     visit->show();
 }
 
-//Загрузить данные из Excel
-void MainWindow::on_pushButton_clicked()
+//Изменение информации по клиенту двойным щелчком
+void MainWindow::on_client_tableView_doubleClicked(const QModelIndex &index)
 {
+    QModelIndexList list  = this->client_tableView->selectionModel()->selectedIndexes();
+    if(!list.isEmpty())
+    {
+        QModelIndex idx = list.first();
+        QSqlRecord rec = modelClient->record(idx.row());
+        int id_client = rec.value(0).toInt();
 
+        client_info *client = new client_info(this, id_client);
+        client->setModal(true);
+        client->show();
+        connect(client, &client_info::ownAccepted, this, &MainWindow::Update);
+    }
 }
 
+void MainWindow::resizeEvent(QResizeEvent *event){
+    QMainWindow::resizeEvent(event);
+    this->resizeTables();
+}
+
+void MainWindow::resizeTables(){
+    client_tableView->setColumnWidth(1, client_tableView->width() / 3.1);
+    client_tableView->setColumnWidth(2, client_tableView->width() / 3.1);
+    client_tableView->setColumnWidth(3, client_tableView->width() / 3.1);
+    visit_tableView->setColumnWidth(1, visit_tableView->width());
+    discount_tableView->setColumnWidth(1, discount_tableView->width() / 2.1);
+    discount_tableView->setColumnWidth(2, discount_tableView->width() / 2.1);
+    doctors_tableView->setColumnWidth(1, doctors_tableView->width());
+    reason_tableView->setColumnWidth(1, reason_tableView->width());
+    brend_tableView->setColumnWidth(1, brend_tableView->width());
+    goods_tableView->setColumnWidth(1, goods_tableView->width());
+    agent_care_tableView->setColumnWidth(1, agent_care_tableView->width());
+}
+
+void MainWindow::on_tabWidget_currentChanged(int index)
+{
+    this->resizeTables();
+}
+
+void MainWindow::on_tabWidget_2_currentChanged(int index)
+{
+    this->resizeTables();
+}
+
+//Изменение информации по клиенту
 void MainWindow::on_change_client_pushButton_clicked()
 {
     QModelIndexList list  = this->client_tableView->selectionModel()->selectedIndexes();
@@ -416,18 +458,20 @@ void MainWindow::on_change_client_pushButton_clicked()
     }
 }
 
-void MainWindow::on_client_tableView_doubleClicked(const QModelIndex &index)
+//Загрузить данные из Excel
+void MainWindow::on_pushButton_clicked()
 {
-    QModelIndexList list  = this->client_tableView->selectionModel()->selectedIndexes();
-    if(!list.isEmpty())
-    {
-        QModelIndex idx = list.first();
-        QSqlRecord rec = modelClient->record(idx.row());
-        int id_client = rec.value(0).toInt();
 
-        client_info *client = new client_info(this, id_client);
-        client->setModal(true);
-        client->show();
-        connect(client, &client_info::ownAccepted, this, &MainWindow::Update);
-    }
+//    QSqlDatabase db_ex = QSqlDatabase::addDatabase("QODBC");
+//    db_ex.setDatabaseName("DRIVER={Microsoft Excel Driver (*.xls)};DBQ=" + QString("D:\\Qt\\Projects\\Optika\\test.xlsx"));
+//    if(db_ex.open())
+//    {
+//        QSqlQuery query("select * from [" + QString("Sheet1") + "$]", db_ex);
+//        while (query.next())
+//        {
+//            QString column1= query.value(0).toString();
+//            qDebug() << column1;
+//        }
+//    }
+
 }

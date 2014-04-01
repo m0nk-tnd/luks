@@ -42,12 +42,12 @@ public:
     QFrame *frame;
     QVBoxLayout *verticalLayout;
     QSplitter *splitter;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
     QLabel *label_35;
     QLabel *label_21;
     QDateEdit *visit_dateEdit;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_22;
     QComboBox *reason_comboBox;
@@ -197,18 +197,18 @@ public:
         splitter = new QSplitter(frame);
         splitter->setObjectName(QStringLiteral("splitter"));
         splitter->setOrientation(Qt::Horizontal);
-        widget = new QWidget(splitter);
-        widget->setObjectName(QStringLiteral("widget"));
-        horizontalLayout = new QHBoxLayout(widget);
+        layoutWidget = new QWidget(splitter);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        label_35 = new QLabel(widget);
+        label_35 = new QLabel(layoutWidget);
         label_35->setObjectName(QStringLiteral("label_35"));
         label_35->setPixmap(QPixmap(QString::fromUtf8(":/icon/icon-calendar.png")));
 
         horizontalLayout->addWidget(label_35);
 
-        label_21 = new QLabel(widget);
+        label_21 = new QLabel(layoutWidget);
         label_21->setObjectName(QStringLiteral("label_21"));
         QFont font1;
         font1.setBold(true);
@@ -217,7 +217,7 @@ public:
 
         horizontalLayout->addWidget(label_21);
 
-        visit_dateEdit = new QDateEdit(widget);
+        visit_dateEdit = new QDateEdit(layoutWidget);
         visit_dateEdit->setObjectName(QStringLiteral("visit_dateEdit"));
         visit_dateEdit->setMinimumDateTime(QDateTime(QDate(2010, 1, 1), QTime(0, 0, 0)));
         visit_dateEdit->setMaximumDate(QDate(2030, 12, 31));
@@ -226,24 +226,24 @@ public:
 
         horizontalLayout->addWidget(visit_dateEdit);
 
-        splitter->addWidget(widget);
-        widget1 = new QWidget(splitter);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        horizontalLayout_2 = new QHBoxLayout(widget1);
+        splitter->addWidget(layoutWidget);
+        layoutWidget1 = new QWidget(splitter);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget1);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        label_22 = new QLabel(widget1);
+        label_22 = new QLabel(layoutWidget1);
         label_22->setObjectName(QStringLiteral("label_22"));
         label_22->setFont(font1);
 
         horizontalLayout_2->addWidget(label_22);
 
-        reason_comboBox = new QComboBox(widget1);
+        reason_comboBox = new QComboBox(layoutWidget1);
         reason_comboBox->setObjectName(QStringLiteral("reason_comboBox"));
 
         horizontalLayout_2->addWidget(reason_comboBox);
 
-        splitter->addWidget(widget1);
+        splitter->addWidget(layoutWidget1);
 
         verticalLayout->addWidget(splitter);
 
@@ -328,31 +328,6 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_8);
 
-        visit_dateEdit->raise();
-        label_21->raise();
-        label_35->raise();
-        reason_comboBox->raise();
-        visit_dateEdit->raise();
-        label_21->raise();
-        label_35->raise();
-        label_22->raise();
-        goods_comboBox->raise();
-        care_agent_comboBox->raise();
-        brend_comboBox->raise();
-        label_24->raise();
-        doctor_comboBox->raise();
-        label_34->raise();
-        label_23->raise();
-        label_33->raise();
-        label_23->raise();
-        doctor_comboBox->raise();
-        brend_comboBox->raise();
-        label_33->raise();
-        goods_comboBox->raise();
-        label_34->raise();
-        care_agent_comboBox->raise();
-        label_24->raise();
-        line->raise();
 
         verticalLayout_6->addWidget(frame);
 
@@ -881,45 +856,7 @@ public:
         verticalLayout_6->addLayout(horizontalLayout_29);
 
         visit_info->setCentralWidget(centralwidget);
-        label_9->raise();
-        od_sph_lineEdit->raise();
-        label_11->raise();
-        label_2->raise();
-        od_vis_lineEdit->raise();
-        od_comments_textEdit->raise();
-        od_axis_lineEdit->raise();
-        label_4->raise();
-        od_cyl_lineEdit->raise();
-        label_7->raise();
-        label_3->raise();
-        label_10->raise();
-        label_5->raise();
-        os_cyl_lineEdit->raise();
-        os_vis_lineEdit->raise();
-        os_axis_lineEdit->raise();
-        os_comments_textEdit->raise();
-        label_8->raise();
-        os_sph_lineEdit->raise();
-        label_6->raise();
-        label->raise();
-        cancel_pushButton->raise();
-        add_pushButton->raise();
         tabWidget->raise();
-        od_r1_lineEdit->raise();
-        od_r2_lineEdit->raise();
-        os_r1_lineEdit->raise();
-        os_r2_lineEdit->raise();
-        bc_lineEdit->raise();
-        dia_lineEdit->raise();
-        dpp_lineEdit->raise();
-        label_36->raise();
-        label_37->raise();
-        label_38->raise();
-        label_39->raise();
-        label_40->raise();
-        label_41->raise();
-        label_42->raise();
-        label_43->raise();
         frame->raise();
         frame_2->raise();
         frame_3->raise();
@@ -951,39 +888,68 @@ public:
         label_24->setText(QApplication::translate("visit_info", "\320\241\321\200\320\265\320\264\321\201\321\202\320\262\320\276 \321\203\321\205\320\276\320\264\320\260", 0));
         label->setText(QApplication::translate("visit_info", "\320\236\321\201\320\274\320\276\321\202\321\200", 0));
         label_2->setText(QApplication::translate("visit_info", "VisOD:", 0));
+        od_vis_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_4->setText(QApplication::translate("visit_info", "sph:", 0));
+        od_sph_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_7->setText(QApplication::translate("visit_info", "cyl:", 0));
+        od_cyl_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_9->setText(QApplication::translate("visit_info", "axis:", 0));
+        od_axis_lineEdit->setInputMask(QApplication::translate("visit_info", "00;_", 0));
         label_11->setText(QApplication::translate("visit_info", "\320\232\320\276\320\274\320\274\320\265\320\275\321\202\320\260\321\200\320\270\320\271", 0));
         label_3->setText(QApplication::translate("visit_info", "VisOS:", 0));
+        os_vis_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_5->setText(QApplication::translate("visit_info", "sph:", 0));
+        os_sph_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_6->setText(QApplication::translate("visit_info", "cyl:", 0));
+        os_cyl_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_8->setText(QApplication::translate("visit_info", "asix:", 0));
+        os_axis_lineEdit->setInputMask(QApplication::translate("visit_info", "00;_", 0));
         label_10->setText(QApplication::translate("visit_info", "\320\232\320\276\320\274\320\274\320\265\320\275\321\202\320\260\321\200\320\270\320\271", 0));
         label_43->setText(QApplication::translate("visit_info", "\320\232\320\265\321\200\320\260\321\202\320\276\320\274\320\265\321\202\321\200\320\270\321\217", 0));
         label_36->setText(QApplication::translate("visit_info", "\320\236D R1", 0));
+        od_r1_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_37->setText(QApplication::translate("visit_info", "R2", 0));
+        od_r2_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_40->setText(QApplication::translate("visit_info", "BC", 0));
+        bc_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_41->setText(QApplication::translate("visit_info", "Dia", 0));
+        dia_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_39->setText(QApplication::translate("visit_info", "OS R1", 0));
+        os_r1_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_38->setText(QApplication::translate("visit_info", "R2", 0));
+        os_r2_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_42->setText(QApplication::translate("visit_info", "Dpp", 0));
+        dpp_lineEdit->setInputMask(QString());
         label_13->setText(QApplication::translate("visit_info", "OD Sph:", 0));
+        od_sph_mkl_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_15->setText(QApplication::translate("visit_info", "Cyl:", 0));
+        od_cyl_mkl_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_19->setText(QApplication::translate("visit_info", "axis:", 0));
+        od_axis_mkl_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_17->setText(QApplication::translate("visit_info", "BC:", 0));
+        bc_mlk_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_18->setText(QApplication::translate("visit_info", "OS Sph:", 0));
+        os_sph_mkl_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_14->setText(QApplication::translate("visit_info", "Cyl:", 0));
+        os_cyl_mkl_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_16->setText(QApplication::translate("visit_info", "axis:", 0));
+        os_axis_mkl_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_12->setText(QApplication::translate("visit_info", "Dpp:", 0));
+        dpp_mkl_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_20->setText(QApplication::translate("visit_info", "\320\221\320\234\320\241", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("visit_info", "\320\234\320\233\320\232", 0));
         label_30->setText(QApplication::translate("visit_info", "OD Sph:", 0));
+        od_sph_ochki_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_29->setText(QApplication::translate("visit_info", "Cyl:", 0));
+        od_cyl_ochki_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_31->setText(QApplication::translate("visit_info", "axis:", 0));
+        od_axis_ochki_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_25->setText(QApplication::translate("visit_info", "OS Sph:", 0));
+        os_sph_ochki_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_28->setText(QApplication::translate("visit_info", "Cyl:", 0));
+        os_cyl_ochki_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_26->setText(QApplication::translate("visit_info", "axis:", 0));
+        os_axis_ochki_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_27->setText(QApplication::translate("visit_info", "Dpp:", 0));
         label_32->setText(QApplication::translate("visit_info", "\320\237\321\200\320\270\320\274\320\265\321\207\320\260\320\275\320\270\321\217", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("visit_info", "\320\236\321\207\320\272\320\270", 0));
