@@ -15,17 +15,20 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     dbparameters.cpp \
     client_info.cpp \
-    visit_info.cpp
+    visit_info.cpp \
+    developers.cpp
 
 HEADERS  += mainwindow.h \
     dbparameters.h \
     client_info.h \
-    visit_info.h
+    visit_info.h \
+    developers.h
 
 FORMS    += mainwindow.ui \
     dbparameters.ui \
     client_info.ui \
-    visit_info.ui
+    visit_info.ui \
+    developers.ui
 
 RESOURCES += \
     resource.qrc

@@ -34,6 +34,7 @@ class Ui_MainWindow
 {
 public:
     QAction *action;
+    QAction *action_2;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout_6;
     QTabWidget *tabWidget;
@@ -65,6 +66,7 @@ public:
     QWidget *tab_2;
     QHBoxLayout *horizontalLayout_7;
     QVBoxLayout *verticalLayout_7;
+    QLineEdit *search_discount_lineEdit;
     QTableView *discount_tableView;
     QHBoxLayout *horizontalLayout_6;
     QPushButton *add_discount_pushButton;
@@ -128,6 +130,11 @@ public:
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/icon/icon-configure.png"), QSize(), QIcon::Normal, QIcon::Off);
         action->setIcon(icon1);
+        action_2 = new QAction(MainWindow);
+        action_2->setObjectName(QStringLiteral("action_2"));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/icon/icon-dev.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+        action_2->setIcon(icon2);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout_6 = new QVBoxLayout(centralWidget);
@@ -210,25 +217,25 @@ public:
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         add_client_pushButton = new QPushButton(tab);
         add_client_pushButton->setObjectName(QStringLiteral("add_client_pushButton"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/icon/icon-plus.gif"), QSize(), QIcon::Normal, QIcon::Off);
-        add_client_pushButton->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/icon/icon-plus.gif"), QSize(), QIcon::Normal, QIcon::Off);
+        add_client_pushButton->setIcon(icon3);
 
         horizontalLayout->addWidget(add_client_pushButton);
 
         change_client_pushButton = new QPushButton(tab);
         change_client_pushButton->setObjectName(QStringLiteral("change_client_pushButton"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/icon/icon-write.png"), QSize(), QIcon::Normal, QIcon::Off);
-        change_client_pushButton->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/icon/icon-write.png"), QSize(), QIcon::Normal, QIcon::Off);
+        change_client_pushButton->setIcon(icon4);
 
         horizontalLayout->addWidget(change_client_pushButton);
 
         delete_client_pushButton = new QPushButton(tab);
         delete_client_pushButton->setObjectName(QStringLiteral("delete_client_pushButton"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/icon/icon-delete.gif"), QSize(), QIcon::Normal, QIcon::Off);
-        delete_client_pushButton->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/icon/icon-delete.gif"), QSize(), QIcon::Normal, QIcon::Off);
+        delete_client_pushButton->setIcon(icon5);
 
         horizontalLayout->addWidget(delete_client_pushButton);
 
@@ -267,19 +274,19 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         add_visit_pushButton = new QPushButton(tab);
         add_visit_pushButton->setObjectName(QStringLiteral("add_visit_pushButton"));
-        add_visit_pushButton->setIcon(icon2);
+        add_visit_pushButton->setIcon(icon3);
 
         horizontalLayout_2->addWidget(add_visit_pushButton);
 
         change_visit_pushButton = new QPushButton(tab);
         change_visit_pushButton->setObjectName(QStringLiteral("change_visit_pushButton"));
-        change_visit_pushButton->setIcon(icon3);
+        change_visit_pushButton->setIcon(icon4);
 
         horizontalLayout_2->addWidget(change_visit_pushButton);
 
         delete_visit_pushButton = new QPushButton(tab);
         delete_visit_pushButton->setObjectName(QStringLiteral("delete_visit_pushButton"));
-        delete_visit_pushButton->setIcon(icon4);
+        delete_visit_pushButton->setIcon(icon5);
 
         horizontalLayout_2->addWidget(delete_visit_pushButton);
 
@@ -302,8 +309,14 @@ public:
         verticalLayout_7 = new QVBoxLayout();
         verticalLayout_7->setSpacing(6);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
+        search_discount_lineEdit = new QLineEdit(tab_2);
+        search_discount_lineEdit->setObjectName(QStringLiteral("search_discount_lineEdit"));
+
+        verticalLayout_7->addWidget(search_discount_lineEdit);
+
         discount_tableView = new QTableView(tab_2);
         discount_tableView->setObjectName(QStringLiteral("discount_tableView"));
+        discount_tableView->setAlternatingRowColors(true);
 
         verticalLayout_7->addWidget(discount_tableView);
 
@@ -312,29 +325,29 @@ public:
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
         add_discount_pushButton = new QPushButton(tab_2);
         add_discount_pushButton->setObjectName(QStringLiteral("add_discount_pushButton"));
-        add_discount_pushButton->setIcon(icon2);
+        add_discount_pushButton->setIcon(icon3);
 
         horizontalLayout_6->addWidget(add_discount_pushButton);
 
         delete_discount_pushButton = new QPushButton(tab_2);
         delete_discount_pushButton->setObjectName(QStringLiteral("delete_discount_pushButton"));
-        delete_discount_pushButton->setIcon(icon4);
+        delete_discount_pushButton->setIcon(icon5);
 
         horizontalLayout_6->addWidget(delete_discount_pushButton);
 
         accept_discount_pushButton = new QPushButton(tab_2);
         accept_discount_pushButton->setObjectName(QStringLiteral("accept_discount_pushButton"));
-        QIcon icon5;
-        icon5.addFile(QStringLiteral(":/icon/icon-check.png"), QSize(), QIcon::Normal, QIcon::Off);
-        accept_discount_pushButton->setIcon(icon5);
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/icon/icon-check.png"), QSize(), QIcon::Normal, QIcon::Off);
+        accept_discount_pushButton->setIcon(icon6);
 
         horizontalLayout_6->addWidget(accept_discount_pushButton);
 
         cansel_pushButton = new QPushButton(tab_2);
         cansel_pushButton->setObjectName(QStringLiteral("cansel_pushButton"));
-        QIcon icon6;
-        icon6.addFile(QStringLiteral(":/icon/icon-cansel.ico"), QSize(), QIcon::Normal, QIcon::Off);
-        cansel_pushButton->setIcon(icon6);
+        QIcon icon7;
+        icon7.addFile(QStringLiteral(":/icon/icon-cansel.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        cansel_pushButton->setIcon(icon7);
 
         horizontalLayout_6->addWidget(cansel_pushButton);
 
@@ -355,9 +368,9 @@ public:
 
         pushButton = new QPushButton(tab_2);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        QIcon icon7;
-        icon7.addFile(QStringLiteral(":/icon/icon-excel.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon7);
+        QIcon icon8;
+        icon8.addFile(QStringLiteral(":/icon/icon-excel.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon8);
 
         verticalLayout_8->addWidget(pushButton);
 
@@ -500,25 +513,25 @@ public:
         horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
         add_directory_pushButton = new QPushButton(tab_3);
         add_directory_pushButton->setObjectName(QStringLiteral("add_directory_pushButton"));
-        add_directory_pushButton->setIcon(icon2);
+        add_directory_pushButton->setIcon(icon3);
 
         horizontalLayout_8->addWidget(add_directory_pushButton);
 
         delete_directory_pushButton = new QPushButton(tab_3);
         delete_directory_pushButton->setObjectName(QStringLiteral("delete_directory_pushButton"));
-        delete_directory_pushButton->setIcon(icon4);
+        delete_directory_pushButton->setIcon(icon5);
 
         horizontalLayout_8->addWidget(delete_directory_pushButton);
 
         accept_directory_pushButton = new QPushButton(tab_3);
         accept_directory_pushButton->setObjectName(QStringLiteral("accept_directory_pushButton"));
-        accept_directory_pushButton->setIcon(icon5);
+        accept_directory_pushButton->setIcon(icon6);
 
         horizontalLayout_8->addWidget(accept_directory_pushButton);
 
         cansel_directory_pushButton = new QPushButton(tab_3);
         cansel_directory_pushButton->setObjectName(QStringLiteral("cansel_directory_pushButton"));
-        cansel_directory_pushButton->setIcon(icon6);
+        cansel_directory_pushButton->setIcon(icon7);
 
         horizontalLayout_8->addWidget(cansel_directory_pushButton);
 
@@ -548,10 +561,11 @@ public:
         menuBar->addAction(menu->menuAction());
         menuBar->addAction(menu_2->menuAction());
         menu->addAction(action);
+        menu_2->addAction(action_2);
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
         tabWidget_2->setCurrentIndex(2);
 
 
@@ -562,6 +576,7 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "\320\236\320\277\321\202\320\270\320\272\320\260 \"\320\233\321\216\320\272\321\201\"", 0));
         action->setText(QApplication::translate("MainWindow", "\320\235\320\260\321\201\321\202\321\200\320\276\320\271\320\272\320\270 \321\201\320\276\320\265\320\264\320\270\320\275\320\265\320\275\320\270\321\217", 0));
+        action_2->setText(QApplication::translate("MainWindow", "\320\240\320\260\320\267\321\200\320\260\320\261\320\276\321\202\321\207\320\270\320\272\320\270", 0));
         search_label->setText(QString());
         search_lineEdit->setPlaceholderText(QApplication::translate("MainWindow", "\320\237\320\276\320\270\321\201\320\272...", 0));
         client_label->setText(QApplication::translate("MainWindow", "\320\221\320\260\320\267\320\260 \320\272\320\273\320\270\320\265\320\275\321\202", 0));
@@ -573,6 +588,7 @@ public:
         change_visit_pushButton->setText(QApplication::translate("MainWindow", "\320\230\320\267\320\274\320\265\320\275\320\270\321\202\321\214", 0));
         delete_visit_pushButton->setText(QApplication::translate("MainWindow", "\320\243\320\264\320\260\320\273\320\270\321\202\321\214 ", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "\320\237\320\276\321\201\320\265\321\211\320\265\320\275\320\270\321\217", 0));
+        search_discount_lineEdit->setPlaceholderText(QApplication::translate("MainWindow", "\320\237\320\276\320\270\321\201\320\272...", 0));
         add_discount_pushButton->setText(QApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214", 0));
         delete_discount_pushButton->setText(QApplication::translate("MainWindow", "\320\243\320\264\320\260\320\273\320\270\321\202\321\214", 0));
         accept_discount_pushButton->setText(QApplication::translate("MainWindow", "\320\237\320\276\320\264\321\202\320\262\320\265\321\200\320\264\320\270\321\202\321\214", 0));

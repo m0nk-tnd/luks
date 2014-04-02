@@ -4,12 +4,10 @@
 #include "ui_mainwindow.h"
 #include <QtSql>
 #include <dbparameters.h>
+#include <developers.h>
 #include <client_info.h>
 #include <visit_info.h>
 #include <QMessageBox>
-
-#include <ActiveQt/qaxobject.h>
-#include <ActiveQt/qaxbase.h>
 
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
@@ -32,6 +30,7 @@ private:
   QSqlTableModel *modelGoods;
   QSqlQueryModel *visitQueryModel;
   QString clientFilter;
+  QString discountFilter;
 
   void updateVisitsTable();
   void resizeTables();
@@ -62,6 +61,9 @@ private slots:
   void on_client_tableView_doubleClicked(const QModelIndex &index);
   void on_tabWidget_currentChanged(int index);
   void on_tabWidget_2_currentChanged(int index);
+  void on_search_discount_lineEdit_textChanged(const QString &arg1);
+  void on_action_2_triggered();
 };
 
 #endif // MAINWINDOW_H
+void on_search_discount_lineEdit_textChanged(const QString &arg1);

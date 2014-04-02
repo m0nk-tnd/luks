@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
   modelDiscount = 0;
   modelGoods = 0;
   clientFilter = "";
+  discountFilter = "";
 
   visitQueryModel = new QSqlQueryModel();
 
@@ -115,7 +116,7 @@ void MainWindow::on_add_visit_pushButton_clicked()
         visit_info *visit = new visit_info(this, id_client, -1, &db);
         connect(visit, &visit_info::accepted, this, &MainWindow::updateVisitsTable);
         visit->show();
-    }
+    }   
 }
 
 //Мастер-детайл Клиент <-> Дата визита
@@ -138,6 +139,9 @@ bool MainWindow::OpenTable(QSqlTableModel *&model, QTableView *table, const QStr
     if(tableName == "\"client\""){
         model->setFilter(clientFilter);
     }
+    else if(tableName == "\"discount\""){
+        model->setFilter(discountFilter);
+    }
     model->select();
     table->setModel(model);
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
@@ -154,7 +158,14 @@ void MainWindow::Update()
     modelClient->setHeaderData(1, Qt::Horizontal, tr("ФИО"));
     modelClient->setHeaderData(2, Qt::Horizontal, tr("Дата рождения"));
     modelClient->setHeaderData(3, Qt::Horizontal, tr("Телефон"));
+
+    OpenTable(modelDiscount, this->discount_tableView, "\"discount\"");
+    modelDiscount->setHeaderData(0, Qt::Horizontal, tr("id"));
+    modelDiscount->setHeaderData(1, Qt::Horizontal, tr("Номер карты"));
+    modelDiscount->setHeaderData(2, Qt::Horizontal, tr("Скидка"));
+
     this->resizeTables();
+
 }
 
 //Добавление в справочнике
@@ -461,17 +472,38 @@ void MainWindow::on_change_client_pushButton_clicked()
 //Загрузить данные из Excel
 void MainWindow::on_pushButton_clicked()
 {
+    QString sPath = QFileDialog::getOpenFileName(0,QObject::tr("Укажите файл с базой скидок"),
+                                                QDir::homePath(), QObject::tr("Файл SQLite (*.xls);;Все файлы (*.*)"));
 
-//    QSqlDatabase db_ex = QSqlDatabase::addDatabase("QODBC");
-//    db_ex.setDatabaseName("DRIVER={Microsoft Excel Driver (*.xls)};DBQ=" + QString("D:\\Qt\\Projects\\Optika\\test.xlsx"));
-//    if(db_ex.open())
-//    {
-//        QSqlQuery query("select * from [" + QString("Sheet1") + "$]", db_ex);
-//        while (query.next())
-//        {
-//            QString column1= query.value(0).toString();
-//            qDebug() << column1;
-//        }
-//    }
+    QSqlDatabase db_ex = QSqlDatabase::addDatabase("QODBC3", "excel");
+    db_ex.setDatabaseName(QString("DRIVER={Microsoft Excel Driver (*.xls)}; READONLY=TRUE; DBQ=%1").arg(sPath));
+    if(db_ex.open())
+    {
+        QSqlQuery query("select * from [" + tr("Лист1$") + "]", db_ex);
+        while (query.next())
+        {
+            QSqlQuery q;
+            q.prepare("INSERT INTO discount(num, percentage) values(?,?)");
+            q.addBindValue(query.value(0).toString());
+            q.addBindValue(query.value(1).toString());
+            q.exec();
+        }
+    }
 
+}
+
+//Поиск в дисконте
+void MainWindow::on_search_discount_lineEdit_textChanged(const QString &arg1)
+{
+    discountFilter = "num LIKE '%"+ arg1 +"%'";
+    Update();
+}
+
+//О программе
+void MainWindow::on_action_2_triggered()
+{
+    developers *dial = new developers(this);
+    dial->setModal(true);
+    dial->setFixedSize(490,280);
+    dial->show();
 }

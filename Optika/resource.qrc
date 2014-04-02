@@ -17,5 +17,8 @@
         <file>icon/icon-configure.png</file>
         <file>icon/icon-excel.png</file>
         <file>icon/icon-calendar.png</file>
+        <file>icon/ThinkAndDo.png</file>
+        <file>icon/qr-code.gif</file>
+        <file>icon/icon-dev.jpg</file>
     </qresource>
 </RCC>

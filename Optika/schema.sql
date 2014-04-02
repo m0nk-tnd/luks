@@ -39,7 +39,7 @@ CREATE TABLE goods(
 DROP TABLE IF EXISTS discount;
 CREATE TABLE discount(
 	id integer primary key autoincrement,
-	num integer,
+	num integer unique,
 	percentage integer
 );
 

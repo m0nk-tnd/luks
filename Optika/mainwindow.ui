@@ -36,7 +36,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="usesScrollButtons">
        <bool>true</bool>
@@ -260,7 +260,18 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_7">
           <item>
-           <widget class="QTableView" name="discount_tableView"/>
+           <widget class="QLineEdit" name="search_discount_lineEdit">
+            <property name="placeholderText">
+             <string>Поиск...</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTableView" name="discount_tableView">
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -552,6 +563,7 @@
     <property name="title">
      <string>О программе</string>
     </property>
+    <addaction name="action_2"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
@@ -564,6 +576,15 @@
    </property>
    <property name="text">
     <string>Настройки соединения</string>
+   </property>
+  </action>
+  <action name="action_2">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/icon/icon-dev.jpg</normaloff>:/icon/icon-dev.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>Разработчики</string>
    </property>
   </action>
  </widget>
