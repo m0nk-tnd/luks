@@ -94,6 +94,7 @@ CREATE TABLE visit_date(
 	os_cyl_ochki  varchar(5),
 	os_axis_ochki  varchar(5),
 	dpp_ochki varchar(5),
-	comments_ochki varchar(255)
+	comments_ochki varchar(255),
 	
+	UNIQUE(visit_date, client_id)
 );

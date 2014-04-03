@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql axcontainer
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -31,6 +31,8 @@ FORMS    += mainwindow.ui \
     developers.ui
 
 RESOURCES += \
-    resource.qrc
+    resource.qrc \
+
+RC_FILE = myapp.rc
 
 

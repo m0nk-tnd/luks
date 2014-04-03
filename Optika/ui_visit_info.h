@@ -848,7 +848,7 @@ public:
         cancel_pushButton = new QPushButton(centralwidget);
         cancel_pushButton->setObjectName(QStringLiteral("cancel_pushButton"));
         QIcon icon2;
-        icon2.addFile(QStringLiteral(":/icon/icon-cansel.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QStringLiteral(":/icon/icon-cansel.jpg"), QSize(), QIcon::Normal, QIcon::Off);
         cancel_pushButton->setIcon(icon2);
 
         horizontalLayout_29->addWidget(cancel_pushButton);
@@ -871,7 +871,7 @@ public:
 
         retranslateUi(visit_info);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(visit_info);
@@ -891,66 +891,39 @@ public:
         label_2->setText(QApplication::translate("visit_info", "VisOD:", 0));
         od_vis_lineEdit->setInputMask(QString());
         label_4->setText(QApplication::translate("visit_info", "sph:", 0));
-        od_sph_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
+        od_sph_lineEdit->setInputMask(QString());
         label_7->setText(QApplication::translate("visit_info", "cyl:", 0));
-        od_cyl_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_9->setText(QApplication::translate("visit_info", "axis:", 0));
-        od_axis_lineEdit->setInputMask(QApplication::translate("visit_info", "00;_", 0));
         label_11->setText(QApplication::translate("visit_info", "\320\232\320\276\320\274\320\274\320\265\320\275\321\202\320\260\321\200\320\270\320\271", 0));
         label_3->setText(QApplication::translate("visit_info", "VisOS:", 0));
-        os_vis_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_5->setText(QApplication::translate("visit_info", "sph:", 0));
-        os_sph_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_6->setText(QApplication::translate("visit_info", "cyl:", 0));
-        os_cyl_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_8->setText(QApplication::translate("visit_info", "asix:", 0));
-        os_axis_lineEdit->setInputMask(QApplication::translate("visit_info", "00;_", 0));
         label_10->setText(QApplication::translate("visit_info", "\320\232\320\276\320\274\320\274\320\265\320\275\321\202\320\260\321\200\320\270\320\271", 0));
         label_43->setText(QApplication::translate("visit_info", "\320\232\320\265\321\200\320\260\321\202\320\276\320\274\320\265\321\202\321\200\320\270\321\217", 0));
         label_36->setText(QApplication::translate("visit_info", "\320\236D R1", 0));
-        od_r1_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_37->setText(QApplication::translate("visit_info", "R2", 0));
-        od_r2_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_40->setText(QApplication::translate("visit_info", "BC", 0));
-        bc_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_41->setText(QApplication::translate("visit_info", "Dia", 0));
-        dia_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_39->setText(QApplication::translate("visit_info", "OS R1", 0));
-        os_r1_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_38->setText(QApplication::translate("visit_info", "R2", 0));
-        os_r2_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_42->setText(QApplication::translate("visit_info", "Dpp", 0));
-        dpp_lineEdit->setInputMask(QString());
         label_13->setText(QApplication::translate("visit_info", "OD Sph:", 0));
-        od_sph_mkl_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_15->setText(QApplication::translate("visit_info", "Cyl:", 0));
-        od_cyl_mkl_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_19->setText(QApplication::translate("visit_info", "axis:", 0));
-        od_axis_mkl_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_17->setText(QApplication::translate("visit_info", "BC:", 0));
-        bc_mlk_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_18->setText(QApplication::translate("visit_info", "OS Sph:", 0));
-        os_sph_mkl_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_14->setText(QApplication::translate("visit_info", "Cyl:", 0));
-        os_cyl_mkl_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_16->setText(QApplication::translate("visit_info", "axis:", 0));
-        os_axis_mkl_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_12->setText(QApplication::translate("visit_info", "Dpp:", 0));
-        dpp_mkl_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_20->setText(QApplication::translate("visit_info", "\320\221\320\234\320\241", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("visit_info", "\320\234\320\233\320\232", 0));
         label_30->setText(QApplication::translate("visit_info", "OD Sph:", 0));
-        od_sph_ochki_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_29->setText(QApplication::translate("visit_info", "Cyl:", 0));
-        od_cyl_ochki_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_31->setText(QApplication::translate("visit_info", "axis:", 0));
-        od_axis_ochki_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_25->setText(QApplication::translate("visit_info", "OS Sph:", 0));
-        os_sph_ochki_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_28->setText(QApplication::translate("visit_info", "Cyl:", 0));
-        os_cyl_ochki_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_26->setText(QApplication::translate("visit_info", "axis:", 0));
-        os_axis_ochki_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_27->setText(QApplication::translate("visit_info", "Dpp:", 0));
         label_32->setText(QApplication::translate("visit_info", "\320\237\321\200\320\270\320\274\320\265\321\207\320\260\320\275\320\270\321\217", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("visit_info", "\320\236\321\207\320\272\320\270", 0));

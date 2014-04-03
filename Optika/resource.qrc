@@ -5,7 +5,6 @@
         <file>icon/icon-delete.gif</file>
         <file>icon/icon-plus.gif</file>
         <file>icon/icon-write.png</file>
-        <file>icon/icon-cansel.ico</file>
         <file>icon/icon-glasses.png</file>
         <file>icon/icon-face-glasses.png</file>
         <file>icon/doctor.png</file>
@@ -20,5 +19,7 @@
         <file>icon/ThinkAndDo.png</file>
         <file>icon/qr-code.gif</file>
         <file>icon/icon-dev.jpg</file>
+        <file>qt_ru.qm</file>
+        <file>icon/icon-cansel.jpg</file>
     </qresource>
 </RCC>

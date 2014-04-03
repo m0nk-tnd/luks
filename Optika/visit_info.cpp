@@ -3,12 +3,48 @@
 
 visit_info::visit_info(QWidget *parent, int id_client, int id, QSqlDatabase *db1, bool copy) :
     QMainWindow(parent),
-    ui(new Ui::visit_info)
+    ui(new Ui::visit_info),
+    copy(copy)
 {
-  //установка валидии полям
-  ui->setupUi(this);
-  QDoubleValidator *dblValidator = new QDoubleValidator(-100.00, 100.00, 2, this);
-  this->ui->od_vis_lineEdit->setValidator(dblValidator);
+    //установка валидии полям
+    ui->setupUi(this);
+
+    QDoubleValidator *dbl1Validator = new QDoubleValidator(-100, 100, 1);
+    QDoubleValidator *dbl2Validator = new QDoubleValidator(-100.00, 100.00, 2);
+    QIntValidator *intValidator = new QIntValidator(-500, 500);
+
+    ui->od_vis_lineEdit->setValidator(dbl2Validator);
+    this->ui->os_vis_lineEdit->setValidator(dbl2Validator);
+    this->ui->od_sph_lineEdit->setValidator(dbl2Validator);
+    this->ui->od_cyl_lineEdit->setValidator(dbl2Validator);
+    this->ui->os_sph_lineEdit->setValidator(dbl2Validator);
+    this->ui->os_cyl_lineEdit->setValidator(dbl2Validator);
+    this->ui->od_r1_lineEdit->setValidator(dbl2Validator);
+    this->ui->od_r2_lineEdit->setValidator(dbl2Validator);
+    this->ui->os_r1_lineEdit->setValidator(dbl2Validator);
+    this->ui->os_r2_lineEdit->setValidator(dbl2Validator);
+    this->ui->od_sph_mkl_lineEdit->setValidator(dbl2Validator);
+    this->ui->od_cyl_mkl_lineEdit->setValidator(dbl2Validator);
+    this->ui->os_sph_mkl_lineEdit->setValidator(dbl2Validator);
+    this->ui->os_cyl_mkl_lineEdit->setValidator(dbl2Validator);
+    this->ui->od_sph_ochki_lineEdit->setValidator(dbl2Validator);
+    this->ui->od_cyl_ochki_lineEdit->setValidator(dbl2Validator);
+    this->ui->os_sph_ochki_lineEdit->setValidator(dbl2Validator);
+    this->ui->os_cyl_ochki_lineEdit->setValidator(dbl2Validator);
+
+    this->ui->bc_lineEdit->setValidator(dbl1Validator);
+    this->ui->dia_lineEdit->setValidator(dbl1Validator);
+    this->ui->bc_mlk_lineEdit->setValidator(dbl1Validator);
+
+    this->ui->od_axis_lineEdit->setValidator(intValidator);
+    this->ui->os_axis_lineEdit->setValidator(intValidator);
+    this->ui->dpp_lineEdit->setValidator(intValidator);
+    this->ui->od_axis_mkl_lineEdit->setValidator(intValidator);
+    this->ui->os_axis_mkl_lineEdit->setValidator(intValidator);
+    this->ui->dpp_mkl_lineEdit->setValidator(intValidator);
+    this->ui->od_axis_ochki_lineEdit->setValidator(intValidator);
+    this->ui->os_axis_ochki_lineEdit->setValidator(intValidator);
+    this->ui->dpp_ochki_lineEdit->setValidator(intValidator);
 
 
     this->id_client=id_client;
@@ -47,7 +83,7 @@ visit_info::visit_info(QWidget *parent, int id_client, int id, QSqlDatabase *db1
     ui->goods_comboBox->setModelColumn(1);
 
     //Если изменение, выводим данные из бд
-	if(id != -1 || copy){
+    if(id != -1 || copy){
         //doctor
         QSqlQuery q;
         q.prepare("SELECT doctor_id FROM visit_date WHERE id = ?");
@@ -109,18 +145,18 @@ visit_info::visit_info(QWidget *parent, int id_client, int id, QSqlDatabase *db1
         q.first();
         ui->goods_comboBox->setCurrentIndex(ui->goods_comboBox->findText(q.value(0).toString()));
 
-		if(copy){
-		  ui->visit_dateEdit->setDate(QDate());
-		}
-		else{
-		  q.prepare("SELECT visit_date FROM visit_date WHERE id = ?");
-		  q.addBindValue(id);
-		  q.exec();
-		  q.first();
-		  QString visit_date = q.value(0).toString();
-		  QDate dt = QDate::fromString(visit_date, "dd.MM.yyyy");
-		  ui->visit_dateEdit->setDate(dt);
-		}
+        if(copy){
+            ui->visit_dateEdit->setDate(QDate());
+        }
+        else{
+            q.prepare("SELECT visit_date FROM visit_date WHERE id = ?");
+            q.addBindValue(id);
+            q.exec();
+            q.first();
+            QString visit_date = q.value(0).toString();
+            QDate dt = QDate::fromString(visit_date, "dd.MM.yyyy");
+            ui->visit_dateEdit->setDate(dt);
+        }
 
         q.prepare("SELECT od_vis, od_sph, od_cyl, od_axis, od_comments, od_r1, od_r2, bc, dia, dpp, \
                   os_vis, os_sph, os_cyl, os_axis, os_comments, os_r1, os_r2, od_sph_mkl, od_cyl_mkl, \
@@ -128,8 +164,8 @@ visit_info::visit_info(QWidget *parent, int id_client, int id, QSqlDatabase *db1
                   od_cyl_ochki, od_axis_ochki, os_sph_ochki, os_cyl_ochki, os_axis_ochki, dpp_ochki, comments_ochki \
                   FROM visit_date WHERE id = ?");
 
-        q.addBindValue(id);
-        q.exec();
+                                              q.addBindValue(id);
+                q.exec();
         q.first();
 
         //Осмотр
@@ -198,7 +234,7 @@ void visit_info::on_add_pushButton_clicked()
     QString temp;
 
     //Апдейт записей
-    if(id != -1){
+    if(id != -1 && !copy){
         q.prepare("UPDATE visit_date SET visit_date = ?, doctor_id = ?, reason_id = ?, brend_id = ?,\
                   care_agent_id = ?, goods_id = ?, od_vis = ?, od_sph = ?, od_cyl = ?, od_axis = ?, od_comments = ?, od_r1 = ?, \
                   od_r2 = ?, bc = ?, dia = ?, dpp = ?, os_vis = ?, os_sph = ?, os_cyl = ?, os_axis = ?, os_comments = ?,  os_r1 = ?, \
@@ -206,7 +242,7 @@ void visit_info::on_add_pushButton_clicked()
                   bc_mkl = ?, bms_mkl = ?, dpp_mkl = ?, od_sph_ochki = ?, od_cyl_ochki = ?, od_axis_ochki = ?, os_sph_ochki = ?, \
                   os_cyl_ochki = ?, os_axis_ochki = ?, dpp_ochki = ?, comments_ochki = ? WHERE id = ?;");
 
-        q.addBindValue(ui->visit_dateEdit->date().toString("dd.MM.yyyy"));
+                q.addBindValue(ui->visit_dateEdit->date().toString("dd.MM.yyyy"));
 
         temp = ui->doctor_comboBox->currentText();
         q_temp.prepare("SELECT id FROM doctor WHERE name = ?");
@@ -291,6 +327,16 @@ void visit_info::on_add_pushButton_clicked()
         //qDebug() << q.lastError();
     }
     else{
+        q.prepare("SELECT id FROM visit_date WHERE visit_date = ? AND client_id =?");
+        q.addBindValue(ui->visit_dateEdit->date().toString("dd.MM.yyyy"));
+        q.addBindValue(id_client);
+        q.exec();
+        if(q.next())
+        {
+            QMessageBox::information(this,tr("Ошибка добавления"),tr("Запись с такой датой уже есть."));
+            return;
+        }
+
         q.prepare("INSERT INTO visit_date(visit_date, client_id, doctor_id, reason_id, brend_id, \
                   care_agent_id, goods_id, od_vis, od_sph, od_cyl, od_axis, od_comments, od_r1, \
                   od_r2, bc, dia, dpp, os_vis, os_sph, os_cyl, os_axis, os_comments,  os_r1, \
@@ -300,7 +346,7 @@ void visit_info::on_add_pushButton_clicked()
                 values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,\
                        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        q.addBindValue(ui->visit_dateEdit->date().toString("dd.MM.yyyy"));
+                q.addBindValue(ui->visit_dateEdit->date().toString("dd.MM.yyyy"));
         q.addBindValue(id_client);
 
         temp = ui->doctor_comboBox->currentText();
@@ -392,11 +438,142 @@ void visit_info::on_cancel_pushButton_clicked()
     close();
 }
 
-void visit_info::on_od_vis_lineEdit_editingFinished()
+void visit_info::Double2FieldValid(QLineEdit *field, bool sign)
 {
-  QString text = this->ui->od_vis_lineEdit->text();
-  text.replace(',', '.');
-  double dd = text.toDouble();
-  if(dd > 0)
-	this->ui->od_vis_lineEdit->setText("+" + text);
+    QString text = field->text();
+    QString returnText = field->text();
+    if(returnText.indexOf(',') == -1){
+        returnText += ",00";
+    }
+    else{
+        int diff = returnText.length() - returnText.indexOf(",") - 1;
+        if(diff == 0){
+            returnText += "00";
+        }
+        else if(diff == 1){
+            returnText += "0";
+        }
+    }
+    text.replace(',', '.');
+    double dd = text.toDouble();
+    if(sign && dd > 0 && text.left(1) != "+")
+        field->setText("+" + returnText);
+    else
+        field->setText(returnText);
+}
+void visit_info::Double1FieldValid(QLineEdit *field, bool sign)
+{
+    QString text = field->text();
+    QString returnText = field->text();
+    if(returnText.indexOf(',') == -1){
+        returnText += ",0";
+    }
+    else{
+        int diff = returnText.length() - returnText.indexOf(",") - 1;
+        if(diff == 0){
+            returnText += "0";
+        }
+    }
+    text.replace(',', '.');
+    double dd = text.toDouble();
+    if(sign && dd > 0 && text.left(1) != "+")
+        field->setText("+" + returnText);
+    else
+        field->setText(returnText);
+}
+
+
+void visit_info::on_od_sph_lineEdit_editingFinished()
+{
+    Double2FieldValid(this->ui->od_sph_lineEdit, true);
+}
+
+void visit_info::on_od_cyl_lineEdit_editingFinished()
+{
+    Double2FieldValid(this->ui->od_cyl_lineEdit, true);
+}
+
+void visit_info::on_os_sph_lineEdit_editingFinished()
+{
+    Double2FieldValid(this->ui->os_sph_lineEdit, true);
+}
+
+void visit_info::on_os_cyl_lineEdit_editingFinished()
+{
+    Double2FieldValid(this->ui->os_cyl_lineEdit, true);
+}
+
+void visit_info::on_od_sph_ochki_lineEdit_editingFinished()
+{
+    Double2FieldValid(this->ui->od_sph_ochki_lineEdit, true);
+}
+
+void visit_info::on_od_cyl_ochki_lineEdit_editingFinished()
+{
+    Double2FieldValid(this->ui->od_cyl_ochki_lineEdit, true);
+}
+
+void visit_info::on_os_sph_ochki_lineEdit_editingFinished()
+{
+    Double2FieldValid(this->ui->os_sph_ochki_lineEdit, true);
+}
+
+void visit_info::on_os_cyl_ochki_lineEdit_editingFinished()
+{
+    Double2FieldValid(this->ui->os_cyl_ochki_lineEdit, true);
+}
+
+void visit_info::on_bc_lineEdit_editingFinished()
+{
+    Double1FieldValid(this->ui->bc_lineEdit);
+}
+
+void visit_info::on_dia_lineEdit_editingFinished()
+{
+    Double1FieldValid(this->ui->dia_lineEdit);
+}
+
+void visit_info::on_od_sph_mkl_lineEdit_editingFinished()
+{
+    Double2FieldValid(this->ui->od_sph_mkl_lineEdit, true);
+}
+
+void visit_info::on_od_cyl_mkl_lineEdit_editingFinished()
+{
+    Double2FieldValid(this->ui->od_cyl_mkl_lineEdit, true);
+}
+
+void visit_info::on_bc_mlk_lineEdit_editingFinished()
+{
+    Double1FieldValid(this->ui->bc_mlk_lineEdit);
+}
+
+void visit_info::on_os_sph_mkl_lineEdit_editingFinished()
+{
+    Double2FieldValid(this->ui->os_sph_mkl_lineEdit, true);
+}
+
+void visit_info::on_os_cyl_mkl_lineEdit_editingFinished()
+{
+    Double2FieldValid(this->ui->os_cyl_mkl_lineEdit, true);
+}
+
+void visit_info::on_od_r1_lineEdit_editingFinished()
+{
+    Double2FieldValid(this->ui->od_r1_lineEdit);
+}
+
+void visit_info::on_od_r2_lineEdit_editingFinished()
+{
+    Double2FieldValid(this->ui->od_r2_lineEdit);
+}
+
+void visit_info::on_os_r1_lineEdit_editingFinished()
+{
+    Double2FieldValid(this->ui->os_r1_lineEdit);
+}
+
+void visit_info::on_os_r2_lineEdit_editingFinished()
+{
+    Double2FieldValid(this->ui->os_r2_lineEdit);
 }

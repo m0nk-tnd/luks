@@ -346,7 +346,7 @@ public:
         cansel_pushButton = new QPushButton(tab_2);
         cansel_pushButton->setObjectName(QStringLiteral("cansel_pushButton"));
         QIcon icon7;
-        icon7.addFile(QStringLiteral(":/icon/icon-cansel.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        icon7.addFile(QStringLiteral(":/icon/icon-cansel.jpg"), QSize(), QIcon::Normal, QIcon::Off);
         cansel_pushButton->setIcon(icon7);
 
         horizontalLayout_6->addWidget(cansel_pushButton);
@@ -565,7 +565,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(2);
         tabWidget_2->setCurrentIndex(2);
 
 
