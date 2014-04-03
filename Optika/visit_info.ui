@@ -267,7 +267,10 @@
            <item>
             <widget class="QLineEdit" name="od_vis_lineEdit">
              <property name="inputMask">
-              <string>#0.00;_</string>
+              <string/>
+             </property>
+             <property name="clearButtonEnabled">
+              <bool>false</bool>
              </property>
             </widget>
            </item>

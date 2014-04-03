@@ -359,6 +359,7 @@ public:
 
         od_vis_lineEdit = new QLineEdit(frame_2);
         od_vis_lineEdit->setObjectName(QStringLiteral("od_vis_lineEdit"));
+        od_vis_lineEdit->setClearButtonEnabled(false);
 
         horizontalLayout_9->addWidget(od_vis_lineEdit);
 
@@ -888,7 +889,7 @@ public:
         label_24->setText(QApplication::translate("visit_info", "\320\241\321\200\320\265\320\264\321\201\321\202\320\262\320\276 \321\203\321\205\320\276\320\264\320\260", 0));
         label->setText(QApplication::translate("visit_info", "\320\236\321\201\320\274\320\276\321\202\321\200", 0));
         label_2->setText(QApplication::translate("visit_info", "VisOD:", 0));
-        od_vis_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
+        od_vis_lineEdit->setInputMask(QString());
         label_4->setText(QApplication::translate("visit_info", "sph:", 0));
         od_sph_lineEdit->setInputMask(QApplication::translate("visit_info", "#0.00;_", 0));
         label_7->setText(QApplication::translate("visit_info", "cyl:", 0));

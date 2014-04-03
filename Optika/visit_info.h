@@ -14,13 +14,15 @@ class visit_info : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit visit_info(QWidget *parent = 0, int id_client = 0, int id = 0, QSqlDatabase *db1 = 0);
+	explicit visit_info(QWidget *parent = 0, int id_client = 0, int id = 0, QSqlDatabase *db1 = 0, bool copy = false);
     ~visit_info();
 
 private slots:
     void on_add_pushButton_clicked();
 
     void on_cancel_pushButton_clicked();
+
+	void on_od_vis_lineEdit_editingFinished();
 
 private:
     int id_client;

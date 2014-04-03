@@ -108,15 +108,30 @@ void MainWindow::on_add_client_pushButton_clicked()
 void MainWindow::on_add_visit_pushButton_clicked()
 {  
     QModelIndexList list  = this->client_tableView->selectionModel()->selectedIndexes();
+	QModelIndexList listVisits  = this->visit_tableView->selectionModel()->selectedIndexes();
+	visit_info *visit = 0;
     if(!list.isEmpty())
     {
         QModelIndex idx = list.first();
         QSqlRecord rec = modelClient->record(idx.row());
         int id_client =rec.value(0).toInt();
-        visit_info *visit = new visit_info(this, id_client, -1, &db);
-        connect(visit, &visit_info::accepted, this, &MainWindow::updateVisitsTable);
-        visit->show();
-    }   
+
+		if(!listVisits.isEmpty())
+		{
+			QModelIndex idx = listVisits.first();
+			QSqlRecord rec = visitQueryModel->record(idx.row());
+			int id = rec.value(0).toInt();
+
+			visit = new visit_info(this, id_client, id, &db, true);
+		}
+		else{
+		  visit = new visit_info(this, id_client, -1, &db);
+		}
+		if(visit){
+		  connect(visit, &visit_info::accepted, this, &MainWindow::updateVisitsTable);
+		  visit->show();
+		}
+	}
 }
 
 //Мастер-детайл Клиент <-> Дата визита

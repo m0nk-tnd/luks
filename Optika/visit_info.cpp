@@ -1,14 +1,19 @@
 #include "visit_info.h"
 #include "ui_visit_info.h"
 
-visit_info::visit_info(QWidget *parent, int id_client, int id, QSqlDatabase *db1) :
+visit_info::visit_info(QWidget *parent, int id_client, int id, QSqlDatabase *db1, bool copy) :
     QMainWindow(parent),
     ui(new Ui::visit_info)
 {
+  //установка валидии полям
+  ui->setupUi(this);
+  QDoubleValidator *dblValidator = new QDoubleValidator(-100.00, 100.00, 2, this);
+  this->ui->od_vis_lineEdit->setValidator(dblValidator);
+
+
     this->id_client=id_client;
     this->id=id;
     this->db = *db1;
-    ui->setupUi(this);
     ui->visit_dateEdit->setDate(QDate::currentDate());
 
     QSqlTableModel *M = new QSqlTableModel(0, db);
@@ -42,7 +47,7 @@ visit_info::visit_info(QWidget *parent, int id_client, int id, QSqlDatabase *db1
     ui->goods_comboBox->setModelColumn(1);
 
     //Если изменение, выводим данные из бд
-    if(id != -1){
+	if(id != -1 || copy){
         //doctor
         QSqlQuery q;
         q.prepare("SELECT doctor_id FROM visit_date WHERE id = ?");
@@ -104,13 +109,18 @@ visit_info::visit_info(QWidget *parent, int id_client, int id, QSqlDatabase *db1
         q.first();
         ui->goods_comboBox->setCurrentIndex(ui->goods_comboBox->findText(q.value(0).toString()));
 
-        q.prepare("SELECT visit_date FROM visit_date WHERE id = ?");
-        q.addBindValue(id);
-        q.exec();
-        q.first();
-        QString visit_date = q.value(0).toString();
-        QDate dt = QDate::fromString(visit_date, "dd.MM.yyyy");
-        ui->visit_dateEdit->setDate(dt);
+		if(copy){
+		  ui->visit_dateEdit->setDate(QDate());
+		}
+		else{
+		  q.prepare("SELECT visit_date FROM visit_date WHERE id = ?");
+		  q.addBindValue(id);
+		  q.exec();
+		  q.first();
+		  QString visit_date = q.value(0).toString();
+		  QDate dt = QDate::fromString(visit_date, "dd.MM.yyyy");
+		  ui->visit_dateEdit->setDate(dt);
+		}
 
         q.prepare("SELECT od_vis, od_sph, od_cyl, od_axis, od_comments, od_r1, od_r2, bc, dia, dpp, \
                   os_vis, os_sph, os_cyl, os_axis, os_comments, os_r1, os_r2, od_sph_mkl, od_cyl_mkl, \
@@ -380,4 +390,13 @@ void visit_info::on_add_pushButton_clicked()
 void visit_info::on_cancel_pushButton_clicked()
 {
     close();
+}
+
+void visit_info::on_od_vis_lineEdit_editingFinished()
+{
+  QString text = this->ui->od_vis_lineEdit->text();
+  text.replace(',', '.');
+  double dd = text.toDouble();
+  if(dd > 0)
+	this->ui->od_vis_lineEdit->setText("+" + text);
 }
