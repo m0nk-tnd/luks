@@ -38,17 +38,16 @@ MainWindow::MainWindow(QWidget *parent) :
   db = QSqlDatabase::addDatabase("QSQLITE");
   db.setDatabaseName(pathToDB);
   if(!db.open()){
-	qDebug() << "Error open db";
-	exit(-1);
+    QMessageBox::critical(this,tr("Ошибка"),tr("Ошибка при открытии базы данных"));
   }
 
   //странная проверка на открытие базы
   //т.к. открывается любой файл - пытаемся выполнить запрос
   QSqlQuery query;
   query.exec("select * from client limit 1");
-  if(query.lastError().type() == 2){
-	qDebug() << "Error open db";
-	exit(-1);
+  if(query.lastError().text() == "no such table: client Невозможно выполнить выражение"
+          || query.lastError().text()== "file is encrypted or is not a database Невозможно выполнить выражение" ){
+      QMessageBox::critical(this,tr("Ошибка"),tr("Неверный файл базы данных"));
   }
 
   OpenTable(modelDiscount, this->discount_tableView, "\"discount\"");
@@ -81,6 +80,7 @@ void MainWindow::on_action_triggered()
 	dbParameters *dial = new dbParameters(this);
 	dial->setModal(true);
 	dial->show();
+    connect(dial, &dbParameters::dbChanged, this, &MainWindow::changeDB);
 }
 
 QString MainWindow::setParamsFirstTime(){
@@ -521,4 +521,44 @@ void MainWindow::on_action_2_triggered()
     dial->setModal(true);
     dial->setFixedSize(490,280);
     dial->show();
+}
+
+void MainWindow::changeDB(QString name)
+{
+    if(name.isEmpty()) return;
+    db.close();
+    db.setDatabaseName(name);
+    db.open();
+
+    //странная проверка на открытие базы
+    //т.к. открывается любой файл - пытаемся выполнить запрос
+    QSqlQuery query;
+    query.exec("select * from client limit 1");
+    if(query.lastError().text() == "no such table: client Невозможно выполнить выражение"
+            || query.lastError().text()== "file is encrypted or is not a database Невозможно выполнить выражение" ){
+        QMessageBox::critical(this,tr("Ошибка"),tr("Неверный файл базы данных"));
+    }
+
+    OpenTable(modelDiscount, this->discount_tableView, "\"discount\"");
+    modelDiscount->setHeaderData(0, Qt::Horizontal, tr("id"));
+    modelDiscount->setHeaderData(1, Qt::Horizontal, tr("Номер карты"));
+    modelDiscount->setHeaderData(2, Qt::Horizontal, tr("Скидка"));
+
+    OpenTable(modelDoctor, this->doctors_tableView, "\"doctor\"");
+    modelDoctor->setHeaderData(1, Qt::Horizontal, tr("Список врачей"));
+
+    OpenTable(modelReason, this->reason_tableView, "\"reason\"");
+    modelReason->setHeaderData(1, Qt::Horizontal, tr("Список причин обращения"));
+
+    OpenTable(modelBrend, this->brend_tableView, "\"brend\"");
+    modelBrend->setHeaderData(1, Qt::Horizontal, tr("Список брендов"));
+
+    OpenTable(modelGoods, this->goods_tableView, "\"goods\"");
+    modelGoods->setHeaderData(1, Qt::Horizontal, tr("Список наименований товаров"));
+
+    OpenTable(modelCare_agent, this->agent_care_tableView, "\"care_agent\"");
+    modelCare_agent->setHeaderData(1, Qt::Horizontal, tr("Список средств ухода"));
+
+    Update();
+    this->resizeTables();
 }

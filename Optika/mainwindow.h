@@ -37,6 +37,7 @@ private:
   bool OpenTable(QSqlTableModel*& model, QTableView* table, const QString& tableName);
   void Update();
   void resizeEvent(QResizeEvent* event);
+  void changeDB(QString);
 
 private slots:
   void on_action_triggered();

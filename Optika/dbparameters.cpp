@@ -32,6 +32,7 @@ void dbParameters::on_buttonBox_accepted()
   QTextStream out(&file);
   out << newVal;
   file.close();
+  emit dbChanged(newVal);
 }
 
 void dbParameters::on_buttonBox_rejected()

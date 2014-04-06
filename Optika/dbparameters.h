@@ -20,6 +20,9 @@ private slots:
   void on_buttonBox_accepted();
   void on_buttonBox_rejected();
   void on_pushButton_clicked();
+
+signals:
+  void dbChanged(QString);
 };
 
 #endif // DBPARAMETERS_H
