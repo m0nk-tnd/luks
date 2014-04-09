@@ -323,7 +323,7 @@ void MainWindow::on_delete_client_pushButton_clicked()
     if(list.isEmpty()){
         QMessageBox::critical(this,tr("Ошибка удаления"),tr("Список удаления пуст!"));
     } else {
-        if(QMessageBox::question(0, tr("Внимание!"), tr("Вы уверены, что хотите удалить данную эту запись?"), QMessageBox::Yes | QMessageBox::No , QMessageBox::Yes )== QMessageBox::Yes)
+        if(QMessageBox::question(0, tr("Внимание!"), tr("Вы уверены, что хотите удалить данную запись?"), QMessageBox::Yes | QMessageBox::No , QMessageBox::Yes )== QMessageBox::Yes)
         {
             idx = list.first();
             int Row = idx.row();
@@ -347,7 +347,7 @@ void MainWindow::on_delete_visit_pushButton_clicked()
     QModelIndexList list  = this->visit_tableView->selectionModel()->selectedIndexes();
     if(!list.isEmpty())
     {
-        if(QMessageBox::question(0, tr("Внимание!"), tr("Вы уверены, что хотите удалить данную эту запись?"), QMessageBox::Yes | QMessageBox::No , QMessageBox::Yes )== QMessageBox::Yes)
+        if(QMessageBox::question(0, tr("Внимание!"), tr("Вы уверены, что хотите удалить данную запись?"), QMessageBox::Yes | QMessageBox::No , QMessageBox::Yes )== QMessageBox::Yes)
         {
             QModelIndex idx = list.first();
             QSqlRecord rec = visitQueryModel->record(idx.row());
@@ -488,7 +488,7 @@ void MainWindow::on_change_client_pushButton_clicked()
 void MainWindow::on_pushButton_clicked()
 {
     QString sPath = QFileDialog::getOpenFileName(0,QObject::tr("Укажите файл с базой скидок"),
-                                                QDir::homePath(), QObject::tr("Файл SQLite (*.xls);;Все файлы (*.*)"));
+                                                QDir::homePath(), QObject::tr("Файл MS Excel (*.xls);;Все файлы (*.*)"));
 
     QSqlDatabase db_ex = QSqlDatabase::addDatabase("QODBC3", "excel");
     db_ex.setDatabaseName(QString("DRIVER={Microsoft Excel Driver (*.xls)}; READONLY=TRUE; DBQ=%1").arg(sPath));
